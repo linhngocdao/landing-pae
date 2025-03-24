@@ -5,7 +5,6 @@ import { SidebarProvider } from '@/context/SidebarContext';
 import ToggleSidebarButton from '@/component/ToggleSidebarButton';
 import SidebarOverlay from '@/component/SidebarOverlay';
 
-// Định nghĩa font
 const inter = Inter({
   subsets: ['latin', 'vietnamese'],
   variable: '--font-inter',
@@ -60,6 +59,8 @@ export const metadata = {
     initialScale: 1,
   },
 };
+
+
 
 export default function RootLayout({ children }) {
   return (
