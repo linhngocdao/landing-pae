@@ -60,19 +60,20 @@ export const metadata = {
   },
 };
 
-
-
 export default function RootLayout({ children }) {
   return (
     <html lang="vi" className={`${inter.variable} ${robotoMono.variable}`}>
       <body className="max-h-screen bg-zinc-100 antialiased">
         <SidebarProvider>
           <div className="flex relative">
-            <Sidebar />
+            <div className="relative">
+              <Sidebar />
+              <ToggleSidebarButton />
+            </div>
             <SidebarOverlay />
             <div className="flex flex-col w-full min-h-screen">
               <div className="flex-none h-14 bg-white shadow-sm flex items-center px-4">
-                <ToggleSidebarButton />
+                {/* Nút toggle không còn nằm ở header */}
               </div>
               <main className="flex-grow p-6">{children}</main>
             </div>
