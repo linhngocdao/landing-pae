@@ -10,7 +10,7 @@ export default function SidebarOverlay() {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 z-20"
+      className="fixed inset-0 backdrop-blur-sm bg-white/30 z-20"
       onClick={toggleSidebar}
       aria-hidden="true"
     />

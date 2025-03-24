@@ -4,6 +4,7 @@ import Sidebar from '@/layout/Sidebar';
 import { SidebarProvider } from '@/context/SidebarContext';
 import ToggleSidebarButton from '@/component/ToggleSidebarButton';
 import SidebarOverlay from '@/component/SidebarOverlay';
+import MainContent from '@/component/MainContent';
 
 const inter = Inter({
   subsets: ['latin', 'vietnamese'],
@@ -68,14 +69,12 @@ export default function RootLayout({ children }) {
           <div className="flex relative">
             <div className="relative">
               <Sidebar />
-              <ToggleSidebarButton />
             </div>
             <SidebarOverlay />
             <div className="flex flex-col w-full min-h-screen">
-              <div className="flex-none h-14 bg-white shadow-sm flex items-center px-4">
-                {/* Nút toggle không còn nằm ở header */}
-              </div>
-              <main className="flex-grow p-6">{children}</main>
+
+              <ToggleSidebarButton />
+              <MainContent>{children}</MainContent>
             </div>
           </div>
         </SidebarProvider>
