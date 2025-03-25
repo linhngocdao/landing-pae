@@ -11,11 +11,11 @@ export const menuItems = [
     icon: '/facebook.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow Cá Nhân', path: '/facebook/follow-personal' },
+      { name: 'Follow Cá Nhân', path: '/facebook/follow-personal', icon: '/facebook.svg' },
       { name: 'Follow Fanpage', path: '/facebook/follow-fanpage' },
       { name: 'Member Group', path: '/facebook/member-group' },
       { name: 'Seeding', path: '/facebook/seeding' },
-      { name: 'Tăng Tương Tác 🔥', path: '/facebook/increase-interaction' },
+      { name: 'Tăng Tương Tác ', path: '/facebook/increase-interaction' },
       { name: 'VIP Like Tháng', path: '/facebook/vip-like' },
     ]
   },
