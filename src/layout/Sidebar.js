@@ -110,7 +110,7 @@ export default function Sidebar() {
             <div className="flex items-center justify-between py-2 px-4">
               <div className="flex items-center">
                 <div className="mr-3 flex items-center justify-center">
-                  <Image src={item.icon} alt="" width={20} height={20} />
+                  <Image src={item.icon} alt="hot" width={20} height={20} unoptimized />
                 </div>
                 <span>{item.name}</span>
               </div>
@@ -151,7 +151,21 @@ export default function Sidebar() {
                     `}
                     onClick={handleMenuItemClick}
                   >
-                    {subItem.name}
+                    <div className="flex items-center justify-between">
+                      <span>{subItem.name}</span>
+                      {subItem.icon && (
+                        <div className="flex items-center justify-center">
+                          <Image
+                            src={subItem.icon}
+                            alt=""
+                            width={30}
+                            height={30}
+                            unoptimized
+                            className="text-gray-500"
+                          />
+                        </div>
+                      )}
+                    </div>
                   </Link>
                 </li>
               ))}

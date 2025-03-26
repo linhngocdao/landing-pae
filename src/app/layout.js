@@ -26,7 +26,6 @@ export const metadata = {
   description: 'Ứng dụng Next.js đầy đủ với các thành phần và cấu hình',
   keywords: ['next.js', 'react', 'javascript', 'typescript', 'tailwindcss'],
   authors: [{ name: 'Frontend Developer' }],
-  colorScheme: 'light dark',
   creator: 'Developer',
   publisher: 'Vercel',
   robots: {
@@ -54,11 +53,13 @@ export const metadata = {
     title: 'Next.js App',
     description: 'Ứng dụng Next.js đầy đủ',
     images: ['https://next-app.vercel.app/twitter-image.jpg'],
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
+  }
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  colorScheme: 'light dark'
 };
 
 export default function RootLayout({ children }) {
@@ -72,7 +73,6 @@ export default function RootLayout({ children }) {
             </div>
             <SidebarOverlay />
             <div className="flex flex-col w-full min-h-screen">
-
               <ToggleSidebarButton />
               <MainContent>{children}</MainContent>
             </div>
