@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chữ chạy số</title>
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.0.6/dist/countUp.min.js"></script>
+</head>
+<body>
+
+    <div id="countup"></div>
+
+    <script>
+        // Tạo hiệu ứng đếm số từ 0 đến 10000
+        var options = {
+            startVal: 0,  // Giá trị bắt đầu
+            endVal: 10000,  // Giá trị kết thúc
+            duration: 5,  // Thời gian chạy hiệu ứng (5 giây)
+            useEasing: true,  // Sử dụng hiệu ứng easing cho số chạy mềm mại
+            useGrouping: true,  // Hiển thị dấu phân cách hàng nghìn
+            separator: ',',  // Dấu phân cách hàng nghìn (ví dụ: 1,000)
+            decimal: '.'  // Ký tự phân cách thập phân
+        };
+
+        var countUp = new CountUp('countup', 0, 10000, 0, 5, options);
+        countUp.start();  // Bắt đầu hiệu ứng
+    </script>
+
+</body>
+</html>
