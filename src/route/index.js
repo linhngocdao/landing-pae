@@ -1,6 +1,6 @@
 export const menuItems = [
-  { name: 'Trang chủ', path: '/', icon: '/globe.svg' },
-  { name: 'Kho Page, Group, TikTok', path: '/store', icon: '/file.svg' },
+  { name: 'Trang chủ', path: '/', icon: '/home.svg' },
+  { name: 'Kho Page, Group, TikTok', path: '/store', icon: '/flag.svg' },
   {
     name: 'DỊCH VỤ',
     type: 'header'
@@ -25,8 +25,8 @@ export const menuItems = [
     icon: '/instagram.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow', path: '/instagram/follow', icon: '/instagram.svg' },
-      { name: 'Like', path: '/instagram/like', icon: '/instagram.svg' },
+      { name: 'Follow', path: '/instagram/follow' },
+      { name: 'Like', path: '/instagram/like' },
     ]
   },
   {
@@ -35,8 +35,8 @@ export const menuItems = [
     icon: '/tiktok.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow', path: '/tiktok/follow', icon: '/tiktok.svg' },
-      { name: 'Tim', path: '/tiktok/heart', icon: '/tiktok.svg' },
+      { name: 'Follow', path: '/tiktok/follow' },
+      { name: 'Tim', path: '/tiktok/heart' },
     ]
   },
   {
@@ -45,8 +45,8 @@ export const menuItems = [
     icon: '/youtube.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Subscribe', path: '/youtube/subscribe', icon: '/youtube.svg' },
-      { name: 'Like Video', path: '/youtube/like', icon: '/youtube.svg' },
+      { name: 'Subscribe', path: '/youtube/subscribe' },
+      { name: 'Like Video', path: '/youtube/like' },
     ]
   },
   {
@@ -55,8 +55,8 @@ export const menuItems = [
     icon: '/zalo.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow', path: '/zalo/follow', icon: '/zalo.svg' },
-      { name: 'Tương tác', path: '/zalo/interaction', icon: '/zalo.svg' },
+      { name: 'Follow', path: '/zalo/follow' },
+      { name: 'Tương tác', path: '/zalo/interaction' },
     ]
   },
   {
@@ -65,8 +65,8 @@ export const menuItems = [
     icon: '/telegram.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Member', path: '/telegram/member', icon: '/telegram.svg' },
-      { name: 'View', path: '/telegram/view', icon: '/telegram.svg' },
+      { name: 'Member', path: '/telegram/member' },
+      { name: 'View', path: '/telegram/view' },
     ]
   },
   {
@@ -75,8 +75,8 @@ export const menuItems = [
     icon: '/twitter.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow', path: '/twitter/follow', icon: '/twitter.svg' },
-      { name: 'Like', path: '/twitter/like', icon: '/twitter.svg' },
+      { name: 'Follow', path: '/twitter/follow' },
+      { name: 'Like', path: '/twitter/like' },
     ]
   },
   {
@@ -85,14 +85,14 @@ export const menuItems = [
     icon: '/shopee.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow Shop', path: '/shopee/follow', icon: '/shopee.svg' },
-      { name: 'Đánh giá', path: '/shopee/review', icon: '/shopee.svg' },
+      { name: 'Follow Shop', path: '/shopee/follow' },
+      { name: 'Đánh giá', path: '/shopee/review' },
     ]
   },
   {
     name: 'LIÊN HỆ HỖ TRỢ',
     path: '/support',
-    icon: '/globe.svg',
+    icon: '/contact.svg',
     isSupport: true
   },
 ];
