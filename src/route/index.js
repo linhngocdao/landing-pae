@@ -1,6 +1,6 @@
 export const menuItems = [
   { name: 'Trang chủ', path: '/', icon: '/home.svg' },
-  { name: 'Kho Page, Group, TikTok', path: '/store', icon: '/flag.svg' },
+  { name: 'Kho Page, Group, TikTok', path: '/kho-page', icon: '/flag.svg' },
   {
     name: 'DỊCH VỤ',
     type: 'header'
@@ -11,8 +11,8 @@ export const menuItems = [
     icon: '/facebook.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow Cá Nhân', path: '/facebook/follow-personal' },
-      { name: 'Follow Fanpage', path: '/facebook/follow-fanpage' },
+      { name: 'Follow Cá Nhân', path: '/group ' },
+      { name: 'Follow Fanpage', path: '/tiktok' },
       { name: 'Member Group', path: '/facebook/member-group' },
       { name: 'Seeding', path: '/facebook/seeding' },
       { name: 'Tăng Tương Tác ', path: '/facebook/increase-interaction', icon: '/hot.gif' },

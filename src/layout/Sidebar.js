@@ -7,6 +7,7 @@ import { useCallback, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { menuItems } from '@/route';
 
+
 export default function Sidebar() {
   const { isOpen, toggleSidebar } = useSidebar();
   const { isMobile } = useViewport();
@@ -63,8 +64,8 @@ export default function Sidebar() {
   }
 
   const sidebarClasses = `
-    bg-white shadow-md overflow-hidden font-inter transition-all duration-300 fixed
-    w-[280px] z-30 flex flex-col h-screen
+    bg-gray-100 shadow-md overflow-hidden font-inter transition-all duration-300 fixed
+    w-[300px] z-30 flex flex-col h-screen rounded-xl border-2 border-white
   `;
 
   const renderMenuItem = (item) => {
@@ -188,7 +189,7 @@ export default function Sidebar() {
 
       <div className="flex-grow overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         <nav className="py-2">
-          <ul>
+          <ul className='text-[17px]'>
             {menuItems.map(item =>
               renderMenuItem(item)
             )}
