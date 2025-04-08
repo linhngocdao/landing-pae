@@ -160,34 +160,86 @@ export default function Home() {
             </div>
 
             {/* Reactions */}
+            {/* Reactions */}
             <div className="px-2 sm:px-4 py-1 border-t border-gray-100">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex -space-x-1">
                     <span className="inline-flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-blue-600 ring-2 ring-white">
-                      <svg
-                        className="h-2 w-2 sm:h-3 sm:w-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d={postIndex === 1
-                          ? "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                          : "M5 12h14a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2zm7-7a1 1 0 0 1 1 1v14a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"}
-                        />
+                      <svg className="h-2 w-2 sm:h-3 sm:w-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                       </svg>
                     </span>
                     <span className="inline-flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-red-500 ring-2 ring-white">
-                      <svg
-                        className="h-2 w-2 sm:h-3 sm:w-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg className="h-2 w-2 sm:h-3 sm:w-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                       </svg>
                     </span>
                   </div>
+                  <span className="text-xs text-gray-500 ml-2">59K</span>
+                </div>
+                <div className="flex gap-2 text-gray-500 text-xs">
+                  <span>46 bình luận</span>
+                  <span>12 lượt chia sẻ</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex h-6 sm:h-8 mb-4 [&>button]:basis-1/3 [&>button]:flex [&>button]:gap-1 sm:[&>button]:gap-1.5 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-lg [&>button]:transition-[background] text-xs sm:text-sm font-semibold text-zinc-600">
+              <button className="hover:bg-zinc-200">
+                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16" width="16" className="sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
+                </svg>
+                <span className="hidden xs:inline">Thích</span>
+              </button>
+              <button className="hover:bg-zinc-200">
+                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16" width="16" className="sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 2H4c-1.103 0-2 .897-2 2v18l5.333-4H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14H6.667L4 18V4h16v12z"></path>
+                </svg>
+                <span className="hidden xs:inline">Bình luận</span>
+              </button>
+              <button className="hover:bg-zinc-200">
+                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16" width="16" className="sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 7.05V4a1 1 0 0 0-1-1 1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72 1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11 9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z"></path>
+                </svg>
+                <span className="hidden xs:inline">Chia sẻ</span>
+              </button>
+            </div>
+
+            {/* Comment input */}
+            <div className="flex gap-2 items-center">
+              <div className="relative w-6 h-6 sm:w-8 sm:h-8">
+                <Image
+                  src="https://demo-dashboard-taupe.vercel.app/logo2.png"
+                  alt="Avatar"
+                  fill
+                  sizes="(max-width: 640px) 1.5rem, 2rem"
+                  className="rounded-full"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <div className="relative h-6 sm:h-8 flex-1">
+                <input
+                  placeholder="Viết bình luận..."
+                  className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full w-full bg-zinc-200 text-xs absolute inset-0"
+                />
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 hover:bg-zinc-300 p-0.5 sm:p-1 rounded-full transition-[background]">
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="text-zinc-600"
+                    height="14"
+                    width="14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                    <path d="M14.829 14.828a4.055 4.055 0 0 1-1.272.858 4.002 4.002 0 0 1-4.875-1.45l-1.658 1.119a6.063 6.063 0 0 0 1.621 1.62 5.963 5.963 0 0 0 2.148.903 6.042 6.042 0 0 0 2.415 0 5.972 5.972 0 0 0 2.148-.903c.313-.212.612-.458.886-.731.272-.271.52-.571.734-.889l-1.658-1.119a4.017 4.017 0 0 1-.489.592z"></path>
+                    <circle cx="8.5" cy="10.5" r="1.5"></circle>
+                    <circle cx="15.493" cy="10.493" r="1.493"></circle>
+                  </svg>
                 </div>
               </div>
             </div>

@@ -3,8 +3,8 @@ import FlipCardComponent from "@/component/CardFlip";
 export default function HomePage() {
   const servicePackages = [
     {
-      name: "Gói 1.000 Follow",
-      price: "249.000",
+      name: "Gói 100 Mem",
+      price: "349.000",
       features: [
         "Follow Việt Thật",
         "Chất Lượng Cao",
@@ -15,25 +15,27 @@ export default function HomePage() {
       ]
     },
     {
-      name: "Gói 500 Tym",
-      price: "249.000",
+      name: "Gói 500 Mem",
+      price: "1.749.000",
       features: [
-        "Loại Global",
+        "Follow Việt Thật",
         "Chất Lượng Cao",
         "Tốc Độ Nhanh",
         "Tăng 1 Lần Dùng Cả Đời",
-        "Bảo Hành Trọn Đời"
+        "Bảo Hành Trọn Đời",
+        "+5K Điểm Tích Lũy"
       ]
     },
     {
-      name: "Gói 1.000 Tym",
-      price: "499.000",
+      name: "Gói 1.000 Mem",
+      price: "3.499.000",
       features: [
-        "Loại Global",
+        "Follow Việt Thật",
         "Chất Lượng Cao",
         "Tốc Độ Nhanh",
         "Tăng 1 Lần Dùng Cả Đời",
-        "Bảo Hành Trọn Đời"
+        "Bảo Hành Trọn Đời",
+        "+10K Điểm Tích Lũy"
       ]
     }
   ];

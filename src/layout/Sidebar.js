@@ -111,7 +111,7 @@ export default function Sidebar() {
           <Link
             href={item.path}
             className={cn(
-              "flex items-center py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all",
+              "flex items-center py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all group",
               isMenuActive(item.path) ? 'bg-blue-100 text-blue-700 font-medium' : ''
             )}
             onClick={handleMenuItemClick}
@@ -122,7 +122,11 @@ export default function Sidebar() {
                 alt=""
                 width={18}
                 height={18}
-                className="transition-colors duration-300"
+                className={cn(
+                  "transition-colors duration-300",
+                  isMenuActive(item.path) ? 'text-blue-700 filter brightness-75' : '',
+                  "group-hover:filter group-hover:brightness-75"
+                )}
               />
             </div>
             <span>{item.name}</span>
@@ -144,7 +148,7 @@ export default function Sidebar() {
           <AccordionTrigger
             onClick={() => toggleSubmenu(item.name)}
             className={cn(
-              "py-2 px-3 rounded-md hover:bg-blue-100 hover:text-blue-700 hover:no-underline",
+              "py-2 px-3 rounded-md hover:bg-blue-100 hover:text-blue-700 hover:no-underline group",
               activeSubmenu === item.name ? 'bg-blue-100 text-blue-700 font-medium' : 'text-gray-700'
             )}
           >
@@ -155,7 +159,11 @@ export default function Sidebar() {
                   alt=""
                   width={18}
                   height={18}
-                  className="transition-colors duration-300"
+                  className={cn(
+                    "transition-colors duration-300",
+                    activeSubmenu === item.name ? 'text-blue-700 filter brightness-75' : '',
+                    "group-hover:filter group-hover:brightness-75"
+                  )}
                 />
               </div>
               <span>{item.name}</span>
@@ -168,7 +176,7 @@ export default function Sidebar() {
                   <Link
                     href={subItem.path}
                     className={cn(
-                      "flex items-center justify-between py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all text-sm",
+                      "flex items-center justify-between py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all text-sm group",
                       isSubmenuActive(subItem.path) ? 'bg-blue-100 text-blue-700 font-medium' : ''
                     )}
                     onClick={handleMenuItemClick}
@@ -180,8 +188,13 @@ export default function Sidebar() {
                           src={subItem.icon}
                           alt=""
                           unoptimized
-                          width={16}
-                          height={16}
+                          width={26}
+                          height={26}
+                          className={cn(
+                            "transition-colors duration-300",
+                            isSubmenuActive(subItem.path) ? 'text-blue-700 filter brightness-75' : '',
+                            "group-hover:filter group-hover:brightness-75"
+                          )}
                         />
                       </div>
                     )}
@@ -217,7 +230,7 @@ export default function Sidebar() {
 
       <div className="flex-none p-4 border-t border-gray-100 mt-auto">
         <div className="flex items-center justify-between text-sm text-gray-500">
-          <span>© 2024 TAB Media</span>
+          <span>© 2025 TAB Media</span>
           <Link href="/support" className="text-blue-600 hover:underline">Hỗ trợ</Link>
         </div>
       </div>
