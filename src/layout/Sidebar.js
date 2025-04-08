@@ -181,6 +181,7 @@ export default function Sidebar() {
                           <Image
                             src={subItem.icon}
                             alt=""
+                            unoptimized
                             width={17}
                             height={17}
                             className="transition-colors duration-300 hover:text-[rgb(30,64,175)]"
