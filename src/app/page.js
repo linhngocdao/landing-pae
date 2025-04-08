@@ -10,7 +10,7 @@ const CountUp = dynamic(() => import("react-countup"), {
 export default function Home() {
   return (
     <div className="mx-2 sm:mx-4 md:mx-6 lg:mx-10 min-h-screen font-inter">
-      <div className="max-w-1xl mx-auto border-white w-full shadow-2xl rounded-xl border-2 p-3 sm:p-5">
+      <div className="max-w-1xl mx-auto border-white border-2 shadow-2xl w-full rounded-xl  p-3 sm:p-5">
         <div className="flex gap-4 flex-col lg:flex-row">
           {/* section1 */}
           <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 flex-1">
