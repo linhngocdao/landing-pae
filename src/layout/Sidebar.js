@@ -6,6 +6,9 @@ import useViewport from '@/hooks/useViewport';
 import { useCallback, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { menuItems } from '@/route';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { cn } from '@/lib/utils';
+
 
 export default function Sidebar() {
   const { isOpen, toggleSidebar } = useSidebar();
@@ -26,14 +29,25 @@ export default function Sidebar() {
       let foundActive = false;
       for (const item of menuItems) {
         if (item.hasSubmenu) {
+          // Kiểm tra xem pathname có bắt đầu bằng đường dẫn chính của menu không
+          if (pathname.startsWith(item.path + '/')) {
+            setActiveSubmenu(item.name);
+            foundActive = true;
+            return;
+          }
+
+          // Kiểm tra từng submenu
           const matchingSubmenu = item.submenu?.find(subItem =>
-            pathname.startsWith(subItem.path)
+            pathname === subItem.path || pathname.startsWith(subItem.path + '/')
           );
+
           if (matchingSubmenu) {
             setActiveSubmenu(item.name);
             foundActive = true;
             return;
           }
+
+          // Kiểm tra nếu đúng là trang chính của menu
           if (pathname === item.path) {
             setActiveSubmenu(item.name);
             foundActive = true;
@@ -63,7 +77,7 @@ export default function Sidebar() {
   };
 
   const isSubmenuActive = (path) => {
-    return pathname.startsWith(path);
+    return pathname === path || pathname.startsWith(path + '/');
   };
 
   // Không render gì cả cho đến khi component được mount
@@ -76,15 +90,16 @@ export default function Sidebar() {
     return null;
   }
 
-  const sidebarClasses = `
-    bg-zinc-100 shadow-md overflow-hidden font-inter transition-all duration-300 fixed
-    w-[250px] z-30 flex flex-col h-screen rounded-xl border-2 border-white
-  `;
+  const sidebarClasses = cn(
+    "bg-white/95 shadow-lg overflow-hidden font-inter transition-all duration-300 fixed",
+    "w-[280px] z-30 flex flex-col h-screen rounded-xl border border-gray-200",
+    "backdrop-blur-sm"
+  );
 
   const renderMenuItem = (item) => {
     if (item.type === 'header') {
       return (
-        <div key={item.name} className="px-4 py-2 mt-4 text-gray-500 font-medium text-sm">
+        <div key={item.name} className="px-4 py-2 mt-4 text-gray-500 font-medium text-sm uppercase tracking-wider">
           {item.name}
         </div>
       );
@@ -92,131 +107,119 @@ export default function Sidebar() {
 
     if (!item.hasSubmenu) {
       return (
-        <li key={item.path} className={`my-1 ${item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : ''}`}>
+        <li key={item.path} className={cn("my-1 px-2", item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : '')}>
           <Link
             href={item.path}
-            className={`text-gray-700 hover:bg-[rgb(147,197,253)] hover:text-[rgb(30,64,175)] hover:font-semibold rounded-md block
-              ${isMenuActive(item.path) ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
-            `}
+            className={cn(
+              "flex items-center py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all",
+              isMenuActive(item.path) ? 'bg-blue-100 text-blue-700 font-medium' : ''
+            )}
             onClick={handleMenuItemClick}
           >
-            <div className="flex items-center py-2 px-4">
-              <div className="mr-3 flex items-center justify-center">
-                <Image
-                  src={item.icon}
-                  alt=""
-                  width={17}
-                  height={17}
-                  className="transition-colors duration-300 hover:text-[rgb(30,64,175)]"
-                />
-              </div>
-              <span className={`transition-colors duration-300 hover:text-[rgb(30,64,175)] ${isMenuActive(item.path) ? 'font-semibold' : ''}`}>{item.name}</span>
+            <div className="mr-3 flex items-center justify-center">
+              <Image
+                src={item.icon}
+                alt=""
+                width={18}
+                height={18}
+                className="transition-colors duration-300"
+              />
             </div>
+            <span>{item.name}</span>
           </Link>
         </li>
       );
     }
 
+    // For items with submenu, use Accordion
     return (
-      <li key={item.path} className="my-1">
-        <div>
-          <button
-            className={`w-full text-left text-gray-700 cursor-pointer hover:bg-[rgb(147,197,253)] hover:text-[rgb(30,64,175)] hover:font-semibold rounded-md block
-              ${activeSubmenu === item.name ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
-              ${pathname === item.path ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
-            `}
+      <Accordion
+        type="single"
+        collapsible
+        key={item.path}
+        defaultValue={activeSubmenu === item.name ? item.name : undefined}
+        className="px-2 my-1"
+      >
+        <AccordionItem value={item.name} className="border-none">
+          <AccordionTrigger
             onClick={() => toggleSubmenu(item.name)}
+            className={cn(
+              "py-2 px-3 rounded-md hover:bg-blue-100 hover:text-blue-700 hover:no-underline",
+              activeSubmenu === item.name ? 'bg-blue-100 text-blue-700 font-medium' : 'text-gray-700'
+            )}
           >
-            <div className={`flex items-center justify-between py-2 px-4 ${activeSubmenu === item.name ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}`}>
-              <div className="flex items-center">
-                <div className="mr-3 flex items-center justify-center">
-                  <Image
-                    src={item.icon}
-                    alt="hot"
-                    width={17}
-                    height={17}
-                    className="transition-colors duration-300 text-[rgb(30,64,175)]"
-                  />
-                </div>
-                <span>{item.name}</span>
+            <div className="flex items-center">
+              <div className="mr-3 flex items-center justify-center">
+                <Image
+                  src={item.icon}
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="transition-colors duration-300"
+                />
               </div>
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className={`transition-transform duration-200 ${activeSubmenu === item.name ? 'rotate-90' : ''}`}
-                >
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </div>
+              <span>{item.name}</span>
             </div>
-          </button>
-          <div
-            className={`overflow-hidden transition-all duration-300 ease-in-out ${activeSubmenu === item.name
-              ? 'max-h-[500px] opacity-100'
-              : 'max-h-0 opacity-0'
-              }`}
-          >
-            <ul className="pl-10 py-1">
+          </AccordionTrigger>
+          <AccordionContent className="pb-0 pt-1">
+            <ul className="pl-7 space-y-1">
               {item.submenu.map((subItem) => (
                 <li key={subItem.path}>
                   <Link
                     href={subItem.path}
-                    className={`text-gray-700 cursor-pointer hover:bg-[rgb(147,197,253)] hover:text-[rgb(30,64,175)] hover:font-semibold rounded-md block py-2 px-2
-                      ${isSubmenuActive(subItem.path) ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
-                    `}
+                    className={cn(
+                      "flex items-center justify-between py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all text-sm",
+                      isSubmenuActive(subItem.path) ? 'bg-blue-100 text-blue-700 font-medium' : ''
+                    )}
                     onClick={handleMenuItemClick}
                   >
-                    <div className="flex cursor-pointer items-center justify-between">
-                      <span>{subItem.name}</span>
-                      {subItem.icon && (
-                        <div className="flex items-center justify-center">
-                          <Image
-                            src={subItem.icon}
-                            alt=""
-                            unoptimized
-                            width={17}
-                            height={17}
-                            className="transition-colors duration-300 hover:text-[rgb(30,64,175)]"
-                          />
-                        </div>
-                      )}
-                    </div>
+                    <span>{subItem.name}</span>
+                    {subItem.icon && (
+                      <div className="flex items-center justify-center">
+                        <Image
+                          src={subItem.icon}
+                          alt=""
+                          unoptimized
+                          width={16}
+                          height={16}
+                        />
+                      </div>
+                    )}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </li>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     );
   };
 
   return (
     <div className={sidebarClasses}>
-      <div className="flex-none py-3 px-4 border-b border-gray-200">
+      <div className="flex-none py-4 px-5 border-b border-gray-100">
         <Link href="/" onClick={handleMenuItemClick}>
-          <div className="flex items-center">
-            <Image src="/logo.png" alt="TAB Media" width={180} height={40} />
+          <div className="flex items-center justify-center">
+            <Image src="/logo.png" alt="TAB Media" width={180} height={40} className="h-10 w-auto" />
           </div>
         </Link>
       </div>
 
-      <div className="overflow-auto">
-        <nav className="py-2">
-          <ul className='text-[16px]'>
+      <div className="overflow-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+        <nav className="py-3">
+          <ul className='text-[15px]'>
             {menuItems.map(item =>
               renderMenuItem(item)
             )}
           </ul>
         </nav>
+      </div>
+
+      <div className="flex-none p-4 border-t border-gray-100 mt-auto">
+        <div className="flex items-center justify-between text-sm text-gray-500">
+          <span>© 2024 TAB Media</span>
+          <Link href="/support" className="text-blue-600 hover:underline">Hỗ trợ</Link>
+        </div>
       </div>
     </div>
   );
