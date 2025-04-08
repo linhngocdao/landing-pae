@@ -63,8 +63,9 @@ export default function Sidebar() {
     return null;
   }
 
+  // z-10 w-0 h-screen overflow-x-hidden aria-expanded:overflow-x-auto aria-expanded:absolute transition-allaria-expanded:lg:relative flex-col bg-zinc-100 aria-expanded:w-[288px] rounded-r-xl aria-expanded:border-2 border-white shadow-2xl gap-2 py-4
   const sidebarClasses = `
-    bg-gray-100 shadow-md overflow-hidden font-inter transition-all duration-300 fixed
+    bg-zinc-100 shadow-md overflow-hidden font-inter transition-all duration-300 fixed
     w-[300px] z-30 flex flex-col h-screen rounded-xl border-2 border-white
   `;
 
@@ -83,7 +84,7 @@ export default function Sidebar() {
           <Link
             href={item.path}
             className={`text-gray-700 hover:bg-blue-50 rounded-md block
-              ${isMenuActive(item.path) ? 'bg-blue-100 font-medium' : ''}
+              ${isMenuActive(item.path) ? 'bg-blue-200 font-medium' : ''}
             `}
             onClick={handleMenuItemClick}
           >
@@ -187,7 +188,7 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <div className="flex-grow overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+      <div className="">
         <nav className="py-2">
           <ul className='text-[17px]'>
             {menuItems.map(item =>

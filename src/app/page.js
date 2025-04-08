@@ -1,5 +1,5 @@
+"use client";
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
             {/* card1 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold">13,000+</span>
+                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={13000} duration={2.5} separator="," />+</span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -21,7 +21,7 @@ export default function Home() {
             {/* card2 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold">8,500+</span>
+                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={8500} duration={2.5} separator="," />+</span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -30,7 +30,7 @@ export default function Home() {
             {/* card3 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold">5,800+</span>
+                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={8500} duration={2.5} separator="," />+</span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -40,7 +40,7 @@ export default function Home() {
             {/* card 4 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold">97%</span>
+                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={97} duration={2.5} separator="," />%</span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -132,18 +132,18 @@ export default function Home() {
               </p>
 
               <div className="mt-3 w-full flex justify-center items-center">
-  <Image
-    src={postIndex === 1
-      ? "https://demo-dashboard-taupe.vercel.app/trian.png"
-      : "https://demo-dashboard-taupe.vercel.app/mua1tang1.png"}
-    alt="Promotion Image"
-    layout="intrinsic"
-    width={800}
-    height={600}  
-    className="rounded-md"
-    style={{ objectFit: "cover" }}
-  />
-</div>
+                <Image
+                  src={postIndex === 1
+                    ? "https://demo-dashboard-taupe.vercel.app/trian.png"
+                    : "https://demo-dashboard-taupe.vercel.app/mua1tang1.png"}
+                  alt="Promotion Image"
+                  layout="intrinsic"
+                  width={800}
+                  height={600}
+                  className="rounded-md"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
 
 
             </div>
