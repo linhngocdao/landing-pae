@@ -6,9 +6,7 @@ import useViewport from '@/hooks/useViewport';
 import { useCallback, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { menuItems } from '@/route';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
-
 
 export default function Sidebar() {
   const { isOpen, toggleSidebar } = useSidebar();
@@ -135,22 +133,27 @@ export default function Sidebar() {
       );
     }
 
-    // For items with submenu, use Accordion
+    // For items with submenu, use custom dropdown
     return (
-      <Accordion
-        type="single"
-        collapsible
-        key={item.path}
-        defaultValue={activeSubmenu === item.name ? item.name : undefined}
-        className="px-2 my-1"
-      >
-        <AccordionItem value={item.name} className="border-none">
-          <AccordionTrigger
-            onClick={() => toggleSubmenu(item.name)}
+      <li key={item.path} className="my-1 px-2">
+        <div>
+          <button
             className={cn(
-              "py-2 px-3 rounded-md hover:bg-blue-100 hover:text-blue-700 hover:no-underline group",
-              activeSubmenu === item.name ? 'bg-blue-100 text-blue-700 font-medium' : 'text-gray-700'
+              "w-full text-left flex items-center justify-between py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all group",
+              activeSubmenu === item.name ? 'bg-blue-100 text-blue-700 font-medium' : ''
             )}
+            onClick={() => {
+              // Close any open menu before opening a new one
+              if (activeSubmenu && activeSubmenu !== item.name) {
+                setActiveSubmenu(null);
+                // Small delay to make the animation smoother
+                setTimeout(() => {
+                  setActiveSubmenu(item.name);
+                }, 50);
+              } else {
+                toggleSubmenu(item.name);
+              }
+            }}
           >
             <div className="flex items-center">
               <div className="mr-3 flex items-center justify-center">
@@ -168,9 +171,33 @@ export default function Sidebar() {
               </div>
               <span>{item.name}</span>
             </div>
-          </AccordionTrigger>
-          <AccordionContent className="pb-0 pt-1">
-            <ul className="pl-7 space-y-1">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={`transition-transform duration-200 ${activeSubmenu === item.name ? 'rotate-90' : ''}`}
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </button>
+          <div
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${activeSubmenu === item.name
+              ? 'max-h-[500px] opacity-100'
+              : 'max-h-0 opacity-0'
+              }`}
+            style={{
+              maxHeight: activeSubmenu === item.name ? `${item.submenu.length * 40}px` : '0',
+            }}
+          >
+            <ul className="pl-7 space-y-1 py-1">
               {item.submenu.map((subItem) => (
                 <li key={subItem.path}>
                   <Link
@@ -202,9 +229,9 @@ export default function Sidebar() {
                 </li>
               ))}
             </ul>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          </div>
+        </div>
+      </li>
     );
   };
 
