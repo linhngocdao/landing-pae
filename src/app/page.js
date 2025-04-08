@@ -309,30 +309,17 @@
 //   );
 // }
 "use client";
+import { SafeCounter } from '@/component/CounNumber';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-
 // Không sử dụng dynamic import ở cấp cao nhất
 // Thay vào đó tạo một component an toàn
 
+
+
 export default function Home() {
-  // State để theo dõi xem code đang chạy ở client hay server
-  const [isClient, setIsClient] = useState(false);
-  const [CountUp, setCountUp] = useState(null);
 
-  useEffect(() => {
-    setIsClient(true);
-    // Load thư viện CountUp trong useEffect để đảm bảo chỉ chạy ở phía client
-    import('react-countup')
-      .then((mod) => setCountUp(() => mod.default))
-      .catch((err) => console.error("Không thể tải CountUp:", err));
-  }, []);
 
-  // Tạo bộ đếm an toàn
-  const SafeCounter = ({ end, ...props }) => {
-    if (!isClient || !CountUp) return <>{end.toLocaleString()}</>;
-    return <CountUp start={0} end={end} {...props} />;
-  };
 
   return (
     <div className="mx-2 sm:mx-4 md:mx-6 lg:mx-10 min-h-screen font-inter">
