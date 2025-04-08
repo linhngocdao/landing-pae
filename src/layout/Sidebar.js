@@ -7,14 +7,21 @@ import { useCallback, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { menuItems } from '@/route';
 
-
 export default function Sidebar() {
   const { isOpen, toggleSidebar } = useSidebar();
   const { isMobile } = useViewport();
   const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
+  // Chỉ render component khi đã mount trên client
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const findActiveMenu = () => {
       let foundActive = false;
       for (const item of menuItems) {
@@ -39,7 +46,7 @@ export default function Sidebar() {
       }
     };
     findActiveMenu();
-  }, [pathname]);
+  }, [pathname, mounted]);
 
   const handleMenuItemClick = useCallback(() => {
     if (isMobile) {
@@ -59,14 +66,19 @@ export default function Sidebar() {
     return pathname.startsWith(path);
   };
 
-  if (!isOpen) {
+  // Không render gì cả cho đến khi component được mount
+  if (!mounted) {
     return null;
   }
 
-  // z-10 w-0 h-screen overflow-x-hidden aria-expanded:overflow-x-auto aria-expanded:absolute transition-allaria-expanded:lg:relative flex-col bg-zinc-100 aria-expanded:w-[288px] rounded-r-xl aria-expanded:border-2 border-white shadow-2xl gap-2 py-4
+  // Chỉ hide sidebar sau khi đã mount
+  if (mounted && !isOpen) {
+    return null;
+  }
+
   const sidebarClasses = `
     bg-zinc-100 shadow-md overflow-hidden font-inter transition-all duration-300 fixed
-    w-[300px] z-30 flex flex-col h-screen rounded-xl border-2 border-white
+    w-[250px] z-30 flex flex-col h-screen rounded-xl border-2 border-white
   `;
 
   const renderMenuItem = (item) => {
@@ -83,16 +95,22 @@ export default function Sidebar() {
         <li key={item.path} className={`my-1 ${item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : ''}`}>
           <Link
             href={item.path}
-            className={`text-gray-700 hover:bg-blue-50 rounded-md block
-              ${isMenuActive(item.path) ? 'bg-blue-200 font-medium' : ''}
+            className={`text-gray-700 hover:bg-[rgb(147,197,253)] hover:text-[rgb(30,64,175)] hover:font-semibold rounded-md block
+              ${isMenuActive(item.path) ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
             `}
             onClick={handleMenuItemClick}
           >
             <div className="flex items-center py-2 px-4">
               <div className="mr-3 flex items-center justify-center">
-                <Image src={item.icon} alt="" width={20} height={20} />
+                <Image
+                  src={item.icon}
+                  alt=""
+                  width={17}
+                  height={17}
+                  className="transition-colors duration-300 hover:text-[rgb(30,64,175)]"
+                />
               </div>
-              <span className={item.isSupport ? "font-medium tracking-wide" : ""}>{item.name}</span>
+              <span className={`transition-colors duration-300 hover:text-[rgb(30,64,175)] ${isMenuActive(item.path) ? 'font-semibold' : ''}`}>{item.name}</span>
             </div>
           </Link>
         </li>
@@ -103,16 +121,22 @@ export default function Sidebar() {
       <li key={item.path} className="my-1">
         <div>
           <button
-            className={`w-full text-left text-gray-700 hover:bg-blue-50 rounded-md block
-              ${activeSubmenu === item.name ? 'bg-blue-50' : ''}
-              ${pathname === item.path ? 'bg-blue-100 font-medium' : ''}
+            className={`w-full text-left text-gray-700 cursor-pointer hover:bg-[rgb(147,197,253)] hover:text-[rgb(30,64,175)] hover:font-semibold rounded-md block
+              ${activeSubmenu === item.name ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
+              ${pathname === item.path ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
             `}
             onClick={() => toggleSubmenu(item.name)}
           >
-            <div className="flex items-center justify-between py-2 px-4">
+            <div className={`flex items-center justify-between py-2 px-4 ${activeSubmenu === item.name ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}`}>
               <div className="flex items-center">
                 <div className="mr-3 flex items-center justify-center">
-                  <Image src={item.icon} alt="hot" width={20} height={20} unoptimized />
+                  <Image
+                    src={item.icon}
+                    alt="hot"
+                    width={17}
+                    height={17}
+                    className="transition-colors duration-300 text-[rgb(30,64,175)]"
+                  />
                 </div>
                 <span>{item.name}</span>
               </div>
@@ -139,31 +163,27 @@ export default function Sidebar() {
               ? 'max-h-[500px] opacity-100'
               : 'max-h-0 opacity-0'
               }`}
-            style={{
-              maxHeight: activeSubmenu === item.name ? `${item.submenu.length * 40}px` : '0',
-            }}
           >
             <ul className="pl-10 py-1">
               {item.submenu.map((subItem) => (
                 <li key={subItem.path}>
                   <Link
                     href={subItem.path}
-                    className={`text-gray-700 hover:bg-blue-50 rounded-md block py-2 px-2
-                      ${isSubmenuActive(subItem.path) ? 'bg-blue-100 font-medium' : ''}
+                    className={`text-gray-700 cursor-pointer hover:bg-[rgb(147,197,253)] hover:text-[rgb(30,64,175)] hover:font-semibold rounded-md block py-2 px-2
+                      ${isSubmenuActive(subItem.path) ? 'bg-[rgb(147,197,253)] text-[rgb(30,64,175)] font-semibold' : ''}
                     `}
                     onClick={handleMenuItemClick}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex cursor-pointer items-center justify-between">
                       <span>{subItem.name}</span>
                       {subItem.icon && (
                         <div className="flex items-center justify-center">
                           <Image
                             src={subItem.icon}
                             alt=""
-                            width={30}
-                            height={30}
-                            unoptimized
-                            className="text-gray-500"
+                            width={17}
+                            height={17}
+                            className="transition-colors duration-300 hover:text-[rgb(30,64,175)]"
                           />
                         </div>
                       )}
@@ -180,17 +200,17 @@ export default function Sidebar() {
 
   return (
     <div className={sidebarClasses}>
-      <div className="flex-none py-4 border-b border-gray-200">
+      <div className="flex-none py-3 px-4 border-b border-gray-200">
         <Link href="/" onClick={handleMenuItemClick}>
-          <div className="flex items-center p-4">
-            <Image src="/logo.png" alt="TAB Media" width={150} height={40} />
+          <div className="flex items-center">
+            <Image src="/logo.png" alt="TAB Media" width={180} height={40} />
           </div>
         </Link>
       </div>
 
-      <div className="">
+      <div className="overflow-auto">
         <nav className="py-2">
-          <ul className='text-[17px]'>
+          <ul className='text-[16px]'>
             {menuItems.map(item =>
               renderMenuItem(item)
             )}

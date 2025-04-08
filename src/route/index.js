@@ -11,9 +11,9 @@ export const menuItems = [
     icon: '/facebook.svg',
     hasSubmenu: true,
     submenu: [
-      { name: 'Follow Cá Nhân', path: '/group ' },
-      { name: 'Follow Fanpage', path: '/tiktok' },
-      { name: 'Member Group', path: '/facebook/member-group' },
+      { name: 'Follow Cá Nhân', path: '/facebook/person ' },
+      { name: 'Follow Fanpage', path: '/facebook/followPage' },
+      { name: 'Member Group', path: '/facebook/memberGroup' },
       { name: 'Seeding', path: '/facebook/seeding' },
       { name: 'Tăng Tương Tác ', path: '/facebook/increase-interaction', icon: '/hot.gif' },
       { name: 'VIP Like Tháng', path: '/facebook/vip-like' },
