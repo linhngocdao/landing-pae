@@ -1,6 +1,12 @@
 const nextConfig = {
   images: {
-    domains: ['demo-dashboard-taupe.vercel.app'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'demo-dashboard-taupe.vercel.app',
+        pathname: '**',
+      },
+    ],
   },
 };
 
