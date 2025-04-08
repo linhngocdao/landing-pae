@@ -1,6 +1,7 @@
 "use client";
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import CountUp from 'react-countup';
+const CountUp = dynamic(() => import('react-countup'), { ssr: false });
 
 export default function Home() {
   return (
@@ -132,16 +133,14 @@ export default function Home() {
               </p>
 
               <div className="mt-3 w-full flex justify-center items-center">
-                <Image
+                <img
                   src={postIndex === 1
                     ? "https://demo-dashboard-taupe.vercel.app/trian.png"
                     : "https://demo-dashboard-taupe.vercel.app/mua1tang1.png"}
                   alt="Promotion Image"
                   width={800}
                   height={600}
-                  className="rounded-md"
-                  style={{ objectFit: "cover" }}
-                />
+                  className="rounded-md object-cover" />
               </div>
 
 
