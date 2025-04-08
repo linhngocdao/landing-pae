@@ -1,9 +1,19 @@
 "use client";
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
+
+// Import CountUp với dynamic import để tránh lỗi SSR
 const CountUp = dynamic(() => import('react-countup'), { ssr: false });
 
 export default function Home() {
+  // State để theo dõi xem code đang chạy ở client hay server
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="mx-2 sm:mx-4 md:mx-6 lg:mx-10 min-h-screen font-inter">
       <div className="max-w-1xl mx-auto border-white w-full shadow-2xl rounded-xl border-2 p-3 sm:p-5">
@@ -13,7 +23,11 @@ export default function Home() {
             {/* card1 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={13000} duration={2.5} separator="," />+</span>
+                <span className="text-xl sm:text-2xl font-bold">
+                  {isClient ? (
+                    <CountUp start={0} end={13000} duration={2.5} separator="," />
+                  ) : "13,000"}+
+                </span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -22,7 +36,11 @@ export default function Home() {
             {/* card2 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={8500} duration={2.5} separator="," />+</span>
+                <span className="text-xl sm:text-2xl font-bold">
+                  {isClient ? (
+                    <CountUp start={0} end={8500} duration={2.5} separator="," />
+                  ) : "8,500"}+
+                </span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -31,7 +49,11 @@ export default function Home() {
             {/* card3 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={8500} duration={2.5} separator="," />+</span>
+                <span className="text-xl sm:text-2xl font-bold">
+                  {isClient ? (
+                    <CountUp start={0} end={8500} duration={2.5} separator="," />
+                  ) : "8,500"}+
+                </span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -41,7 +63,11 @@ export default function Home() {
             {/* card 4 */}
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold"><CountUp start={0} end={97} duration={2.5} separator="," />%</span>
+                <span className="text-xl sm:text-2xl font-bold">
+                  {isClient ? (
+                    <CountUp start={0} end={97} duration={2.5} separator="," />
+                  ) : "97"}%
+                </span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
@@ -133,14 +159,16 @@ export default function Home() {
               </p>
 
               <div className="mt-3 w-full flex justify-center items-center">
-                <img
+                <Image
                   src={postIndex === 1
                     ? "https://demo-dashboard-taupe.vercel.app/trian.png"
                     : "https://demo-dashboard-taupe.vercel.app/mua1tang1.png"}
                   alt="Promotion Image"
                   width={800}
                   height={600}
-                  className="rounded-md object-cover" />
+                  className="rounded-md"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
 
 
@@ -266,7 +294,7 @@ export default function Home() {
                   >
                     <span className="w-6 h-6 sm:w-8 sm:h-8 mr-2 flex items-center justify-center bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors">
                       <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="#0068FF">
-                        <path d="M12.49 10.272v3.456h-1.05v-2.904L9.2 13.572l-.48-.816 2.673-1.92h1.097zm5.3 2.736c0-.72-.564-1.096-1.488-1.096-.504 0-.96.136-1.344.36-.264-.2-.384-.424-.384-.704 0-.4.36-.656.888-.656.384 0 .792.136 1.224.472l.672-.84c-.528-.472-1.176-.672-1.896-.672-1.12 0-1.832.576-1.832 1.464 0 .576.248 1.016.752 1.336-.336.224-.568.528-.568.904 0 .464.36.76.936.76.312 0 .616-.096.904-.232.08.504.544.8 1.208.8 1.048 0 1.648-.544 1.648-1.4v-.496h-.72zm-1.096.632c0 .304-.2.464-.504.464-.288 0-.416-.144-.416-.368 0-.328.304-.568.736-.704.12.072.184.176.184.328v.28zM1.164 8.33V15.67c0 2.456 1.992 4.448 4.448 4.448h12.776c2.456 0 4.448-1.992 4.448-4.448V8.33c0-2.456-1.992-4.448-4.448-4.448H5.612c-2.456 0-4.448 1.992-4.448 4.448zm20.143 11.556H2.693c-1.252 0-2.268-1.016-2.268-2.268v-18.68c0-1.252 1.016-2.268 2.268-2.268c0 1.252 1.016 2.268 2.268 2.268h18.614c1.252 0 2.268-1.016 2.268-2.268v-18.68c0-1.252-1.016-2.268-2.268-2.268z" />
+                        <path d="M12.49 10.272v3.456h-1.05v-2.904L9.2 13.572l-.48-.816 2.673-1.92h1.097zm5.3 2.736c0-.72-.564-1.096-1.488-1.096-.504 0-.96.136-1.344.36-.264-.2-.384-.424-.384-.704 0-.4.36-.656.888-.656.384 0 .792.136 1.224.472l.672-.84c-.528-.472-1.176-.672-1.896-.672-1.12 0-1.832.576-1.832 1.464 0 .576.248 1.016.752 1.336-.336.224-.568.528-.568.904 0 .464.36.76.936.76.312 0 .616-.096.904-.232.08.504.544.8 1.208.8 1.048 0 1.648-.544 1.648-1.4v-.496h-.72zm-1.096.632c0 .304-.2.464-.504.464-.288 0-.416-.144-.416-.368 0-.328.304-.568.736-.704.12.072.184.176.184.328v.28zM1.164 8.33V15.67c0 2.456 1.992 4.448 4.448 4.448h12.776c2.456 0 4.448-1.992 4.448-4.448V8.33c0-2.456-1.992-4.448-4.448-4.448H5.612c-2.456 0-4.448 1.992-4.448 4.448zm20.143 11.556H2.693c-1.252 0-2.268-1.016-2.268-2.268v-18.68c0-1.252 1.016-2.268 2.268-2.268h18.614c1.252 0 2.268 1.016 2.268 2.268v18.68c0 1.252-1.016 2.268-2.268 2.268z" />
                       </svg>
                     </span>
                     Zalo: 0369.264.999
