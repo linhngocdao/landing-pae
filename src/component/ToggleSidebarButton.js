@@ -4,13 +4,13 @@ import { useSidebar } from '@/context/SidebarContext';
 export default function ToggleSidebarButton() {
   const { isOpen, toggleSidebar } = useSidebar();
   const buttonClasses = `
-    ${isOpen ? " p-2  top-[2px]" : " p-4  top-4"}
+    ${isOpen ? " p-1  top-[2px]" : " p-4  top-4"}
     ${isOpen ? "bg-zinc-200  rounded-br-none rounded-tr-[20px] rounded-bl-lg" : "bg-gray-300"}
     hover:bg-zinc-300
     transition-colors
     z-50
     fixed
-    ${isOpen ? 'left-[242px]' : 'left-0'}
+    ${isOpen ? 'left-[250px]' : 'left-0'}
     cursor-pointer
     ${isOpen ? '' : 'rounded-r-md'}
   `;

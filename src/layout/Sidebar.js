@@ -1,6 +1,6 @@
 'use client';
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 import { useSidebar } from '@/context/SidebarContext';
 import useViewport from '@/hooks/useViewport';
 import { useCallback, useState, useEffect } from 'react';
@@ -93,6 +93,7 @@ export default function Sidebar() {
   );
 
   const renderMenuItem = (item) => {
+    console.log(item)
     if (item.type === 'header') {
       return (
         <div key={item.name} className="px-4 py-2 mt-4 text-zinc-600 text-sm font-medium uppercase tracking-wider">
@@ -103,7 +104,7 @@ export default function Sidebar() {
 
     if (!item.hasSubmenu) {
       return (
-        <li key={item.path} className={cn("my-1 px-2", item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : '')}>
+        <li key={item.path} className={cn("my-1 px-2 cursor-pointer", item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : '')}>
           <Link
             href={item.path}
             className={cn(
@@ -112,20 +113,19 @@ export default function Sidebar() {
             )}
             onClick={handleMenuItemClick}
           >
-            <div className="mr-3 flex items-center justify-center text-zinc-600">
-              <Image
-                src={item.icon}
-                alt=""
+            <div className={cn("mr-3 flex items-center justify-center", isMenuActive(item.path) ? 'text-blue-800' : 'text-zinc-600')}>
+              <object
+                data={item.icon}
+                type="image/svg+xml"
                 width={18}
                 height={18}
                 className={cn(
-                  "transition-colors duration-300 text-zinc-600",
-                  isMenuActive(item.path) ? 'text-blue-800 filter brightness-75' : '',
-                  "group-hover:filter group-hover:brightness-75 hover:text-blue-800"
+                  "transition-colors duration-300",
+                  "group-hover:filter group-hover:brightness-75"
                 )}
               />
             </div>
-            <span className="text-[15px] font-medium text-zinc-600">{item.name}</span>
+            <span className={cn("text-[15px] font-medium", isMenuActive(item.path) ? 'text-blue-800' : 'text-zinc-600')}>{item.name}</span>
           </Link>
         </li>
       );
@@ -151,20 +151,19 @@ export default function Sidebar() {
             }}
           >
             <div className="flex items-center">
-              <div className="mr-3 flex items-center justify-center">
-                <Image
-                  src={item.icon}
-                  alt=""
+              <div className={cn("mr-3 flex items-center justify-center", activeSubmenu === item.name ? 'text-blue-700' : 'text-zinc-600')}>
+                <object
+                  data={item.icon}
+                  type="image/svg+xml"
                   width={18}
                   height={18}
                   className={cn(
-                    "transition-colors duration-300 text-zinc-600",
-                    activeSubmenu === item.name ? 'text-blue-800 filter brightness-75' : '',
+                    "transition-colors duration-300",
                     "group-hover:filter group-hover:brightness-75"
                   )}
                 />
               </div>
-              <span className="text-[15px] font-medium text-zinc-600">{item.name}</span>
+              <span className={cn("text-[15px] font-medium", activeSubmenu === item.name ? 'text-blue-700' : 'text-zinc-600')}>{item.name}</span>
             </div>
             <div>
               <svg
@@ -203,9 +202,9 @@ export default function Sidebar() {
                     )}
                     onClick={handleMenuItemClick}
                   >
-                    <span className="text-[15px] font-medium">{subItem.name}</span>
+                    <span className={cn("text-[15px] font-medium", isSubmenuActive(subItem.path) ? 'text-blue-700' : 'text-zinc-600')}>{subItem.name}</span>
                     {subItem.icon && (
-                      <div className="flex items-center justify-center">
+                      <div className={cn("flex items-center justify-center", isSubmenuActive(subItem.path) ? 'text-blue-700' : 'text-zinc-600')}>
                         <Image
                           src={subItem.icon}
                           alt=""
@@ -232,26 +231,24 @@ export default function Sidebar() {
 
   return (
     <div className={sidebarClasses}>
-      <div className="flex-none py-4 px-5 border-b border-gray-100">
+      <div className="px-4 pt-3 mx-4 mb-1 self-center justify-self-center">
         <Link href="/" onClick={handleMenuItemClick}>
-          <div className="flex items-center justify-center">
-            <Image
-              src="/logo.png"
-              alt="TAB Media"
-              width={130}
-              height={40}
-              quality={100}
-              priority
-              className="pt-2 h-full w-auto object-contain"
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="TAB Media"
+            width={150}
+            height={60}
+            quality={100}
+            priority
+            className=" h-full w-[100%] object-contain"
+          />
         </Link>
       </div>
-      <div class="w-[90%] mx-auto rounded-full h-[0.75px] bg-zinc-300 my-4"></div>
+      <div className="w-[90%] mx-auto rounded-full h-[0.75px] bg-zinc-300 my-2"></div>
 
       <div className="overflow-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         <nav className="py-3">
-          <ul className='text-[15px]'>
+          <ul className="text-[15px]">
             {menuItems.map(item =>
               renderMenuItem(item)
             )}

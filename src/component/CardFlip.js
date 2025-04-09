@@ -20,48 +20,50 @@ export default function FlipCardComponent({ items = [] }) {
 
   const defaultItems = [
     {
-      name: "Gói 100 Tym",
-      price: "99.000",
+      name: "Gói 1.000 Follow",
+      price: "299.000",
       features: [
-        "Loại Global",
+        "Follow Việt Thật",
         "Chất Lượng Cao",
         "Tốc Độ Nhanh",
         "Tăng 1 Lần Dùng Cả Đời",
-        "Bảo Hành Trọn Đời"
+        "Bảo Hành Trọn Đời",
+        "+1K Điểm Tích Lũy"
       ]
     },
     {
-      name: "Gói 500 Tym",
-      price: "249.000",
+      name: "Gói 5.000 Follow",
+      price: "1.499.000",
       features: [
-        "Loại Global",
+        "Follow Việt Thật",
         "Chất Lượng Cao",
         "Tốc Độ Nhanh",
         "Tăng 1 Lần Dùng Cả Đời",
-        "Bảo Hành Trọn Đời"
+        "Bảo Hành Trọn Đời",
+        "+1.000 Follow",
+        "+5K Điểm Tích Lũy"
       ]
     },
     {
-      name: "Gói 1.000 Tym",
-      price: "499.000",
+      name: "Gói 10.000 Follow",
+      price: "2.999.000",
       features: [
-        "Loại Global",
+        "Follow Việt Thật",
         "Chất Lượng Cao",
         "Tốc Độ Nhanh",
         "Tăng 1 Lần Dùng Cả Đời",
-        "Bảo Hành Trọn Đời"
+        "Bảo Hành Trọn Đời",
+        "Để Xuất Tìm Kiếm",
+        "+3.000 Follow",
+        "+10K Điểm Tích Lũy"
       ]
     }
   ];
 
   const displayItems = items.length > 0 ? items : defaultItems;
 
-  const getGradientColors = (index) => {
-    const gradients = [
-      { from: "from-orange-500", to: "to-orange-300", border: "border-orange-300" },
-    ];
-
-    return gradients[index % gradients.length];
+  const getGradientColors = () => {
+    return { from: "from-orange-500", to: "to-orange-300", border: "border-orange-300" };
   };
 
   useEffect(() => {
@@ -86,7 +88,7 @@ export default function FlipCardComponent({ items = [] }) {
     <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden pt-20">
       <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8">
         {displayItems.map((item, index) => {
-          const gradientColors = getGradientColors(index);
+          const gradientColors = getGradientColors();
 
           return (
             <div
@@ -144,7 +146,7 @@ export default function FlipCardComponent({ items = [] }) {
                     width: "100%"
                   }}
                 >
-                  <div className={`group flex flex-col p-4 text-center h-full w-[86%] border-2 border-white rounded-2xl shadow-lg bg-zinc-150`}>
+                  <div className={`group flex flex-col p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-lg bg-zinc-50`}>
                     <div className="w-33 h-33 mx-auto mb-4 p-1 relative">
                       <div
                         className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[8.5rem] h-[8.5rem] absolute left-1/2 -translate-x-1/2 ${animationState >= 1 ? 'animate-wheel-spin' : ''}`}
@@ -187,7 +189,7 @@ export default function FlipCardComponent({ items = [] }) {
                     >
                       {item.name}
                     </h3>
-                    <ol className="list-none flex flex-col gap-4 h-full my-4 flex-1 text-[17px] font-medium text-zinc-600 justify-evenly">
+                    <ol className="list-none flex flex-col gap-4 h-full overflow-y-auto my-4 flex-1 text-[17px] font-medium text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
@@ -204,7 +206,7 @@ export default function FlipCardComponent({ items = [] }) {
                             fill="currentColor"
                             strokeWidth="0"
                             viewBox="0 0 24 24"
-                            className={`text-${gradientColors.from.split('-')[1]} absolute left-0 text-orange-500`}
+                            className="text-orange-500 absolute left-0"
                             height="24"
                             width="24"
                             xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +220,7 @@ export default function FlipCardComponent({ items = [] }) {
                       ))}
                     </ol>
                     <a
-                      className={`btn transition-all duration-500 hover:text-orange-500 hover:bg-none hover:border-orange-500 border-2 bg-gradient-to-br ${gradientColors.from} ${gradientColors.to} rounded-xl px-4 py-2 text-white font-bold text-md transform `}
+                      className="btn transition-all duration-500 hover:text-orange-500 hover:bg-none hover:border-orange-500 border-2 bg-gradient-to-br from-orange-500 to-orange-300 rounded-xl px-4 py-2 text-white font-bold text-md transform"
                       href={item.contactLink || "https://www.messenger.com/t/106313722503403"}
                       target="_blank"
                       rel="noopener noreferrer"

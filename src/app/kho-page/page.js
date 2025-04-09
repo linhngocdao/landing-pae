@@ -12,6 +12,7 @@ export default function KhoPage() {
             <p>
               List Fanpage quý khách vui lòng xem{' '}
               <a
+                className="text-[#1e40af]"
                 href="https://docs.google.com/spreadsheets/d/1GH3240u6mXuH4X69hEBM8YmosQS6sXYkErKJHXSMBWA/edit?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -25,6 +26,7 @@ export default function KhoPage() {
                 href="https://docs.google.com/spreadsheets/d/1GH3240u6mXuH4X69hEBM8YmosQS6sXYkErKJHXSMBWA/edit?hl=vi#gid=859076871"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-[#1e40af]"
               >
                 tại đây
               </a>
@@ -34,6 +36,7 @@ export default function KhoPage() {
               <a
                 href="https://docs.google.com/spreadsheets/d/1GH3240u6mXuH4X69hEBM8YmosQS6sXYkErKJHXSMBWA/edit?hl=vi#gid=551119439"
                 target="_blank"
+                className="text-[#1e40af]"
                 rel="noopener noreferrer"
               >
                 tại đây
@@ -97,7 +100,7 @@ export default function KhoPage() {
                 </div>
                 <div>
                   <div className="flex items-center">
-                    <h4 className="text-xs sm:text-sm font-semibold text-blue-600">TAB Media</h4>
+                    <h4 className="text-xs sm:text-sm font-semibold text-[#1e40af]">TAB Media</h4>
                   </div>
                   <p className="text-xs text-gray-500">20 tháng 6 lúc 17:03</p>
                 </div>

@@ -29,7 +29,7 @@ export default function Home() {
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
                 <span className="text-xl sm:text-2xl font-bold">
-                  <CountUp end={8500} duration={2.5} separator="," />+
+                  <CountUp end={4500} duration={2.5} separator="," />+
                 </span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
@@ -40,7 +40,7 @@ export default function Home() {
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
               <div className="self-center">
                 <span className="text-xl sm:text-2xl font-bold">
-                  <CountUp end={8500} duration={2.5} separator="," />+
+                  <CountUp end={650} duration={2.5} separator="," />+
                 </span>
                 <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
               </div>
