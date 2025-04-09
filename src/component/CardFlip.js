@@ -83,7 +83,7 @@ export default function FlipCardComponent({ items = [] }) {
   }, []);
 
   return (
-    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden">
+    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden pt-20">
       <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8">
         {displayItems.map((item, index) => {
           const gradientColors = getGradientColors(index);
@@ -144,7 +144,7 @@ export default function FlipCardComponent({ items = [] }) {
                     width: "100%"
                   }}
                 >
-                  <div className={`group flex flex-col p-4 text-center h-full w-[86%] border-2 border-white rounded-2xl shadow-lg bg-zinc-100`}>
+                  <div className={`group flex flex-col p-4 text-center h-full w-[86%] border-2 border-white rounded-2xl shadow-lg bg-zinc-150`}>
                     <div className="w-33 h-33 mx-auto mb-4 p-1 relative">
                       <div
                         className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[8.5rem] h-[8.5rem] absolute left-1/2 -translate-x-1/2 ${animationState >= 1 ? 'animate-wheel-spin' : ''}`}
