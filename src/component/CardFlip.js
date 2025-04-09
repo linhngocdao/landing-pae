@@ -85,7 +85,7 @@ export default function FlipCardComponent({ items = [] }) {
   }, []);
 
   return (
-    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden pt-20">
+    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden pt-14">
       <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8">
         {displayItems.map((item, index) => {
           const gradientColors = getGradientColors();
