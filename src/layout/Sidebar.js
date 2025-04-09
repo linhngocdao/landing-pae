@@ -78,26 +78,24 @@ export default function Sidebar() {
     return pathname === path || pathname.startsWith(path + '/');
   };
 
-  // Không render gì cả cho đến khi component được mount
   if (!mounted) {
     return null;
   }
 
-  // Chỉ hide sidebar sau khi đã mount
   if (mounted && !isOpen) {
     return null;
   }
 
   const sidebarClasses = cn(
-    "bg-white/95 shadow-lg overflow-hidden font-inter transition-all duration-300 fixed",
-    "w-[280px] z-30 flex flex-col h-screen rounded-xl border border-gray-200",
+    "bg-zinc-100 shadow-lg overflow-hidden font-inter transition-all duration-300 fixed",
+    "w-[280px] z-30 flex flex-col h-screen rounded-tr-[20px] rounded-br-[20px] border border-2 border-white",
     "backdrop-blur-sm"
   );
 
   const renderMenuItem = (item) => {
     if (item.type === 'header') {
       return (
-        <div key={item.name} className="px-4 py-2 mt-4 text-gray-500 font-medium text-sm uppercase tracking-wider">
+        <div key={item.name} className="px-4 py-2 mt-4 text-zinc-600 text-sm font-medium uppercase tracking-wider">
           {item.name}
         </div>
       );
@@ -109,44 +107,41 @@ export default function Sidebar() {
           <Link
             href={item.path}
             className={cn(
-              "flex items-center py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all group",
-              isMenuActive(item.path) ? 'bg-blue-100 text-blue-700 font-medium' : ''
+              "flex items-center py-2 px-3 rounded-md text-zinc-600 hover:bg-blue-100 hover:text-blue-800 transition-all group",
+              isMenuActive(item.path) ? 'bg-blue-100 text-blue-800 font-medium' : ''
             )}
             onClick={handleMenuItemClick}
           >
-            <div className="mr-3 flex items-center justify-center">
+            <div className="mr-3 flex items-center justify-center text-zinc-600">
               <Image
                 src={item.icon}
                 alt=""
                 width={18}
                 height={18}
                 className={cn(
-                  "transition-colors duration-300",
-                  isMenuActive(item.path) ? 'text-blue-700 filter brightness-75' : '',
-                  "group-hover:filter group-hover:brightness-75"
+                  "transition-colors duration-300 text-zinc-600",
+                  isMenuActive(item.path) ? 'text-blue-800 filter brightness-75' : '',
+                  "group-hover:filter group-hover:brightness-75 hover:text-blue-800"
                 )}
               />
             </div>
-            <span>{item.name}</span>
+            <span className="text-[15px] font-medium text-zinc-600">{item.name}</span>
           </Link>
         </li>
       );
     }
 
-    // For items with submenu, use custom dropdown
     return (
       <li key={item.path} className="my-1 px-2">
         <div>
           <button
             className={cn(
-              "w-full text-left flex items-center justify-between py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all group",
+              "w-full text-left flex items-center justify-between py-2 px-3 rounded-md text-zinc-600 hover:bg-blue-300 hover:text-blue-700 transition-all group",
               activeSubmenu === item.name ? 'bg-blue-100 text-blue-700 font-medium' : ''
             )}
             onClick={() => {
-              // Close any open menu before opening a new one
               if (activeSubmenu && activeSubmenu !== item.name) {
                 setActiveSubmenu(null);
-                // Small delay to make the animation smoother
                 setTimeout(() => {
                   setActiveSubmenu(item.name);
                 }, 50);
@@ -163,13 +158,13 @@ export default function Sidebar() {
                   width={18}
                   height={18}
                   className={cn(
-                    "transition-colors duration-300",
-                    activeSubmenu === item.name ? 'text-blue-700 filter brightness-75' : '',
+                    "transition-colors duration-300 text-zinc-600",
+                    activeSubmenu === item.name ? 'text-blue-800 filter brightness-75' : '',
                     "group-hover:filter group-hover:brightness-75"
                   )}
                 />
               </div>
-              <span>{item.name}</span>
+              <span className="text-[15px] font-medium text-zinc-600">{item.name}</span>
             </div>
             <div>
               <svg
@@ -203,12 +198,12 @@ export default function Sidebar() {
                   <Link
                     href={subItem.path}
                     className={cn(
-                      "flex items-center justify-between py-2 px-3 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all text-sm group",
+                      "items-center rounded-lg max-h-6 px-2 h-6 flex gap-2 transition-colors hover:bg-blue-300 text-zinc-600 hover:text-blue-800 aria-selected:bg-blue-100 aria-selected:text-blue-800 cursor-pointer w-max",
                       isSubmenuActive(subItem.path) ? 'bg-blue-100 text-blue-700 font-medium' : ''
                     )}
                     onClick={handleMenuItemClick}
                   >
-                    <span>{subItem.name}</span>
+                    <span className="text-[15px] font-medium">{subItem.name}</span>
                     {subItem.icon && (
                       <div className="flex items-center justify-center">
                         <Image
@@ -240,10 +235,19 @@ export default function Sidebar() {
       <div className="flex-none py-4 px-5 border-b border-gray-100">
         <Link href="/" onClick={handleMenuItemClick}>
           <div className="flex items-center justify-center">
-            <Image src="/logo.png" alt="TAB Media" width={180} height={40} className="h-10 w-auto" />
+            <Image
+              src="/logo.png"
+              alt="TAB Media"
+              width={130}
+              height={40}
+              quality={100}
+              priority
+              className="pt-2 h-full w-auto object-contain"
+            />
           </div>
         </Link>
       </div>
+      <div class="w-[90%] mx-auto rounded-full h-[0.75px] bg-zinc-300 my-4"></div>
 
       <div className="overflow-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         <nav className="py-3">
@@ -257,7 +261,7 @@ export default function Sidebar() {
 
       <div className="flex-none p-4 border-t border-gray-100 mt-auto">
         <div className="flex items-center justify-between text-sm text-gray-500">
-          <span>© 2025 TAB Media</span>
+          <span className="text-zinc-600">© 2025 TAB Media</span>
           <Link href="/support" className="text-blue-600 hover:underline">Hỗ trợ</Link>
         </div>
       </div>

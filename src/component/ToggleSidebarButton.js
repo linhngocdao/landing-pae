@@ -1,23 +1,18 @@
 'use client';
 import { useSidebar } from '@/context/SidebarContext';
-import useViewport from '@/hooks/useViewport';
 
 export default function ToggleSidebarButton() {
   const { isOpen, toggleSidebar } = useSidebar();
-  const { isMobile } = useViewport();
-
   const buttonClasses = `
-
-      ${isOpen ? " p-2" : " p-4"}
-    ${isOpen ? "bg-white" : "bg-gray-300"}
-    hover:bg-gray-200
+    ${isOpen ? " p-2  top-[2px]" : " p-4  top-4"}
+    ${isOpen ? "bg-zinc-200  rounded-br-none rounded-tr-[20px] rounded-bl-lg" : "bg-gray-300"}
+    hover:bg-zinc-300
     transition-colors
     z-50
     fixed
-    ${isOpen ? 'left-[238px]' : 'left-0'}
-    top-4
+    ${isOpen ? 'left-[242px]' : 'left-0'}
     cursor-pointer
-    ${isOpen ? 'rounded-lg' : 'rounded-r-md'}
+    ${isOpen ? '' : 'rounded-r-md'}
   `;
 
   return (
