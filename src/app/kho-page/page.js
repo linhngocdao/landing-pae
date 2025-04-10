@@ -123,7 +123,7 @@ export default function KhoPage() {
 
               <div className="mt-3 w-full flex justify-center items-center">
                 <Image
-                  src="https://demo-dashboard-taupe.vercel.app/baohanh.png"
+                  src="/2.png"
                   alt="Promotion Image"
                   layout="intrinsic"
                   width={800}

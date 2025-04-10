@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+// Images in the public directory should be referenced with a leading slash
 
 const CountUp = dynamic(() => import("react-countup"), {
   ssr: false,
@@ -9,7 +10,7 @@ const CountUp = dynamic(() => import("react-countup"), {
 
 export default function Home() {
   return (
-    <div className="mx-2 sm:mx-4 md:mx-6 lg:mx-10 min-h-screen font-inter">
+    <div className="mx-[10px] sm:mx-2 md:mx-6 lg:mx-10 min-h-screen font-inter">
       <div className="max-w-1xl mx-auto border-white border-2 shadow-2xl w-full rounded-xl  p-3 sm:p-5">
         <div className="flex gap-4 flex-col lg:flex-row">
           {/* section1 */}
@@ -61,10 +62,10 @@ export default function Home() {
             </div>
           </div>
           {/* section2 */}
-          <div className="border-white shadow-2xl rounded-xl px-4 py-2 border-2 gap-4 h-max lg:w-64 xl:w-80">
+          <div className="border-white shadow-2xl h-auto rounded-xl px-4 py-2 border-2 gap-4  lg:w-64 xl:w-80">
             <h1 className="text-xl font-bold">Fanpage hỗ trợ</h1>
-            <div className="h-[0.75px] w-full mx-auto bg-zinc-300 my-2"></div>
-            <div className="flex gap-4 items-center">
+            <div className="h-[0.75px] w-full mx-auto bg-zinc-300 mt-5"></div>
+            <div className="flex gap-4 items-center pt-6">
               <div className="relative w-12 h-12 sm:w-16 sm:h-16">
                 <Image
                   src="https://demo-dashboard-taupe.vercel.app/logo2.png"
@@ -118,7 +119,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="flex items-center">
-                    <h4 className="text-xs sm:text-sm font-semibold text-blue-600">TAB Media</h4>
+                    <h4 className="text-xs sm:text-sm font-semibold text-[#1e40af]">TAB Media</h4>
                   </div>
                   <p className="text-xs text-gray-500">20 tháng 6 lúc 17:03</p>
                 </div>
@@ -148,8 +149,8 @@ export default function Home() {
               <div className="mt-3 w-full flex justify-center items-center">
                 <Image
                   src={postIndex === 1
-                    ? "https://demo-dashboard-taupe.vercel.app/trian.png"
-                    : "https://demo-dashboard-taupe.vercel.app/mua1tang1.png"}
+                    ? "/1.png"
+                    : "/3.png"}
                   alt="Promotion Image"
                   width={800}
                   height={600}

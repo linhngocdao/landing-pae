@@ -85,7 +85,7 @@ export default function FlipCardComponent({ items = [] }) {
   }, []);
 
   return (
-    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden pt-14">
+    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden ">
       <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8">
         {displayItems.map((item, index) => {
           const gradientColors = getGradientColors();
@@ -93,7 +93,7 @@ export default function FlipCardComponent({ items = [] }) {
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[85%] sm:w-full max-w-[300px] sm:max-w-full mx-2 first:ml-0 last:mr-0 sm:mx-auto h-[580px] sm:h-auto md:h-[40rem] transition-all duration-1000 ease-out snap-center
+              className={`flex-shrink-0 w-[75%] sm:w-full max-w-[380px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
                         ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
                         ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
@@ -108,7 +108,7 @@ export default function FlipCardComponent({ items = [] }) {
                 style={{
                   height: "100%",
                   position: "relative",
-                  width: "100%",
+                  width: "80%",
                   transform: animationState >= 1 ? `rotateY(${360}deg)` : "rotateY(0deg)",
                   transition: "transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
                   transitionDelay: `${index * 200 + 300}ms`,
@@ -189,7 +189,7 @@ export default function FlipCardComponent({ items = [] }) {
                     >
                       {item.name}
                     </h3>
-                    <ol className="list-none flex flex-col gap-4 h-full overflow-y-auto my-4 flex-1 text-[17px] font-medium text-zinc-600 justify-evenly">
+                    <ol className="list-none flex flex-col gap-4 h-full  my-4 flex-1 text-[17px] font-medium text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}

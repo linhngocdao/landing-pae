@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import Link from "next/link";
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
@@ -39,6 +39,40 @@ const MenuItem = ({
 
   // Xử lý menu thường (không có submenu)
   if (!item.hasSubmenu) {
+    // Xử lý menu có external URL
+    if (item.externalUrl) {
+      return (
+        <li className={cn("my-1 px-2 cursor-pointer", item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : '')}>
+          <a
+            href={item.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "flex items-center py-2 px-3 rounded-md text-zinc-600 hover:bg-blue-100 hover:text-blue-800 transition-all group",
+              isMenuActive(item.path) ? 'bg-blue-100 text-blue-800 font-medium' : ''
+            )}
+            onClick={handleMenuItemClick}
+          >
+            <div className="mr-3 flex items-center justify-center">
+              <ColorableIcon
+                iconPath={item.icon}
+                isActive={isMenuActive(item.path)}
+                activeColor={`text-${customActiveColor}`}
+                defaultColor={`text-${customDefaultColor}`}
+                hoverColor={`text-${customHoverColor}`}
+                width={18}
+                height={18}
+              />
+            </div>
+            <span className={cn("text-[15px] font-medium", isMenuActive(item.path) ? `text-${customActiveColor}` : `text-${customDefaultColor}`)}>
+              {item.name}
+            </span>
+          </a>
+        </li>
+      );
+    }
+
+    // Xử lý menu thường không có external URL
     return (
       <li className={cn("my-1 px-2 cursor-pointer", item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : '')}>
         <Link

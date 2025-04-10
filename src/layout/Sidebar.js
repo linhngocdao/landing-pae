@@ -121,7 +121,7 @@ export default function Sidebar() {
       <div className="flex-none p-4 border-t border-gray-100 mt-auto">
         <div className="flex items-center justify-between text-sm text-gray-500">
           <span className="text-zinc-600">© 2025 TAB Media</span>
-          <Link href="/support" className="text-blue-600 hover:underline">Hỗ trợ</Link>
+          {/* <Link href="/support" className="text-blue-600 hover:underline">Hỗ trợ</Link> */}
         </div>
       </div>
     </div>

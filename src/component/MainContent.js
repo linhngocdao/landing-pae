@@ -8,10 +8,10 @@ export default function MainContent({ children }) {
 
   const mainClasses = `
     flex-grow
-    p-6
     transition-all
     duration-300
     ${isOpen && !isMobile ? 'ml-[280px]' : ''}
+    p-0 md:p-6
   `;
 
   return (

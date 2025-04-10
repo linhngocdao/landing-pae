@@ -89,6 +89,13 @@ export const menuItems = [
       { name: 'Follow Cá nhân', path: '/shopee/follow' },
       { name: 'Buff Tym', path: '/shopee/tym' },
     ]
-  }
+  },
+  {
+    name: 'LIÊN HỆ HỖ TRỢ',
+    path: '/support',
+    icon: '/globe.svg',
+    isSupport: true,
+    externalUrl: 'https://zalo.me/0369264999'
+  },
 
 ];

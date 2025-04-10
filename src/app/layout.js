@@ -20,10 +20,10 @@ const robotoMono = Roboto_Mono({
 
 export const metadata = {
   title: {
-    template: '%s | Tab Media',
-    default: 'Tab Media',
+    template: '%s | TAB Media',
+    default: 'TAB Media',
   },
-  description: 'Tab Media - truyền thông agency',
+  description: 'TAB Media - truyền thông agency',
   keywords: ['next.js', 'react', 'javascript', 'typescript', 'tailwindcss'],
   authors: [{ name: 'Frontend Developer' }],
   creator: 'Developer',
@@ -33,8 +33,8 @@ export const metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Tab Media',
-    description: 'Tab Media - truyền thông agency',
+    title: 'TAB Media',
+    description: 'TAB Media - truyền thông agency',
     url: 'https://next-app.vercel.app',
     siteName: 'Tab Media',
     images: [
@@ -50,7 +50,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tab Media',
+    title: 'TAB Media',
     description: 'Tab Media - truyền thông agency',
     images: ['https://next-app.vercel.app/twitter-image.jpg'],
   }
