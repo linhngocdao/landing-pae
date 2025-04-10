@@ -93,7 +93,7 @@ export default function FlipCardComponent({ items = [] }) {
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[73%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[40rem] transition-all duration-1000 ease-out snap-center
+              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[40rem] transition-all duration-1000 ease-out snap-center
                         ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
                         ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
@@ -147,7 +147,7 @@ export default function FlipCardComponent({ items = [] }) {
                     width: "100%"
                   }}
                 >
-                  <div className={`group flex flex-col p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-lg bg-zinc-50`}>
+                  <div className={`group flex flex-col p-3 sm:p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-lg bg-zinc-50`}>
                     <div className="w-33 h-33 mx-auto mb-4 p-1 relative">
                       <div
                         className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[8.5rem] h-[8.5rem] absolute left-1/2 -translate-x-1/2 ${animationState >= 1 ? 'animate-wheel-spin' : ''}`}
@@ -190,7 +190,7 @@ export default function FlipCardComponent({ items = [] }) {
                     >
                       {item.name}
                     </h3>
-                    <ol className="list-none flex flex-col gap-6 h-full  my-2 flex-1 text-[16px] font-medium text-zinc-600 justify-evenly">
+                    <ol className="list-none flex flex-col gap-4 sm:gap-6 h-full my-2 flex-1 text-[15px] sm:text-[16px] font-medium text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
