@@ -85,8 +85,8 @@ export default function FlipCardComponent({ items = [] }) {
   }, []);
 
   return (
-    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden ">
-      <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8">
+    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden">
+      <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8 px-2">
         {displayItems.map((item, index) => {
           const gradientColors = getGradientColors();
 
@@ -105,10 +105,11 @@ export default function FlipCardComponent({ items = [] }) {
               }}
             >
               <div
+                className="mx-auto"
                 style={{
                   height: "100%",
                   position: "relative",
-                  width: "80%",
+                  width: "85%",
                   transform: animationState >= 1 ? `rotateY(${360}deg)` : "rotateY(0deg)",
                   transition: "transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
                   transitionDelay: `${index * 200 + 300}ms`,
