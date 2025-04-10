@@ -7,6 +7,8 @@ import { useCallback, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { menuItems } from '@/route';
 import { cn } from '@/lib/utils';
+import "./style.css";
+import MenuItem from "@/component/SVG/MenuItem";
 
 export default function Sidebar() {
   const { isOpen, toggleSidebar } = useSidebar();
@@ -66,18 +68,6 @@ export default function Sidebar() {
     }
   }, [isMobile, toggleSidebar]);
 
-  const toggleSubmenu = useCallback((name) => {
-    setActiveSubmenu(prev => prev === name ? null : name);
-  }, []);
-
-  const isMenuActive = (path) => {
-    return pathname === path;
-  };
-
-  const isSubmenuActive = (path) => {
-    return pathname === path || pathname.startsWith(path + '/');
-  };
-
   if (!mounted) {
     return null;
   }
@@ -91,143 +81,6 @@ export default function Sidebar() {
     "w-[280px] z-30 flex flex-col h-screen rounded-tr-[20px] rounded-br-[20px] border border-2 border-white",
     "backdrop-blur-sm"
   );
-
-  const renderMenuItem = (item) => {
-    console.log(item)
-    if (item.type === 'header') {
-      return (
-        <div key={item.name} className="px-4 py-2 mt-4 text-zinc-600 text-sm font-medium uppercase tracking-wider">
-          {item.name}
-        </div>
-      );
-    }
-
-    if (!item.hasSubmenu) {
-      return (
-        <li key={item.path} className={cn("my-1 px-2 cursor-pointer", item.isSupport ? 'mt-4 pt-2 border-t border-gray-200' : '')}>
-          <Link
-            href={item.path}
-            className={cn(
-              "flex items-center py-2 px-3 rounded-md text-zinc-600 hover:bg-blue-100 hover:text-blue-800 transition-all group",
-              isMenuActive(item.path) ? 'bg-blue-100 text-blue-800 font-medium' : ''
-            )}
-            onClick={handleMenuItemClick}
-          >
-            <div className={cn("mr-3 flex items-center justify-center", isMenuActive(item.path) ? 'text-blue-800' : 'text-zinc-600')}>
-              <object
-                data={item.icon}
-                type="image/svg+xml"
-                width={18}
-                height={18}
-                className={cn(
-                  "transition-colors duration-300",
-                  "group-hover:filter group-hover:brightness-75"
-                )}
-              />
-            </div>
-            <span className={cn("text-[15px] font-medium", isMenuActive(item.path) ? 'text-blue-800' : 'text-zinc-600')}>{item.name}</span>
-          </Link>
-        </li>
-      );
-    }
-
-    return (
-      <li key={item.path} className="my-1 px-2">
-        <div>
-          <button
-            className={cn(
-              "w-full text-left flex items-center justify-between py-2 px-3 rounded-md text-zinc-600 hover:bg-blue-300 hover:text-blue-700 transition-all group",
-              activeSubmenu === item.name ? 'bg-blue-100 text-blue-700 font-medium' : ''
-            )}
-            onClick={() => {
-              if (activeSubmenu && activeSubmenu !== item.name) {
-                setActiveSubmenu(null);
-                setTimeout(() => {
-                  setActiveSubmenu(item.name);
-                }, 50);
-              } else {
-                toggleSubmenu(item.name);
-              }
-            }}
-          >
-            <div className="flex items-center">
-              <div className={cn("mr-3 flex items-center justify-center", activeSubmenu === item.name ? 'text-blue-700' : 'text-zinc-600')}>
-                <object
-                  data={item.icon}
-                  type="image/svg+xml"
-                  width={18}
-                  height={18}
-                  className={cn(
-                    "transition-colors duration-300",
-                    "group-hover:filter group-hover:brightness-75"
-                  )}
-                />
-              </div>
-              <span className={cn("text-[15px] font-medium", activeSubmenu === item.name ? 'text-blue-700' : 'text-zinc-600')}>{item.name}</span>
-            </div>
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={`transition-transform duration-200 ${activeSubmenu === item.name ? 'rotate-90' : ''}`}
-              >
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </button>
-          <div
-            className={`overflow-hidden transition-all duration-300 ease-in-out ${activeSubmenu === item.name
-              ? 'max-h-[500px] opacity-100'
-              : 'max-h-0 opacity-0'
-              }`}
-            style={{
-              maxHeight: activeSubmenu === item.name ? `${item.submenu.length * 40}px` : '0',
-            }}
-          >
-            <ul className="pl-7 space-y-1 py-1">
-              {item.submenu.map((subItem) => (
-                <li key={subItem.path}>
-                  <Link
-                    href={subItem.path}
-                    className={cn(
-                      "items-center rounded-lg max-h-6 px-2 h-6 flex gap-2 transition-colors hover:bg-blue-300 text-zinc-600 hover:text-blue-800 aria-selected:bg-blue-100 aria-selected:text-blue-800 cursor-pointer w-max",
-                      isSubmenuActive(subItem.path) ? 'bg-blue-100 text-blue-700 font-medium' : ''
-                    )}
-                    onClick={handleMenuItemClick}
-                  >
-                    <span className={cn("text-[15px] font-medium", isSubmenuActive(subItem.path) ? 'text-blue-700' : 'text-zinc-600')}>{subItem.name}</span>
-                    {subItem.icon && (
-                      <div className={cn("flex items-center justify-center", isSubmenuActive(subItem.path) ? 'text-blue-700' : 'text-zinc-600')}>
-                        <Image
-                          src={subItem.icon}
-                          alt=""
-                          unoptimized
-                          width={26}
-                          height={26}
-                          className={cn(
-                            "transition-colors duration-300",
-                            isSubmenuActive(subItem.path) ? 'text-blue-700 filter brightness-75' : '',
-                            "group-hover:filter group-hover:brightness-75"
-                          )}
-                        />
-                      </div>
-                    )}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </li>
-    );
-  };
 
   return (
     <div className={sidebarClasses}>
@@ -249,9 +102,18 @@ export default function Sidebar() {
       <div className="overflow-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         <nav className="py-3">
           <ul className="text-[15px]">
-            {menuItems.map(item =>
-              renderMenuItem(item)
-            )}
+            {menuItems.map(item => (
+              <MenuItem
+                key={item.path || item.name}
+                item={item}
+                activeSubmenu={activeSubmenu}
+                setActiveSubmenu={setActiveSubmenu}
+                handleMenuItemClick={handleMenuItemClick}
+                customActiveColor="blue-700"
+                customDefaultColor="zinc-600"
+                customHoverColor="blue-800"
+              />
+            ))}
           </ul>
         </nav>
       </div>
