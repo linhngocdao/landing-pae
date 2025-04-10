@@ -93,7 +93,7 @@ export default function FlipCardComponent({ items = [] }) {
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[75%] sm:w-full max-w-[380px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
+              className={`flex-shrink-0 w-[73%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[40rem] transition-all duration-1000 ease-out snap-center
                         ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
                         ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
@@ -190,7 +190,7 @@ export default function FlipCardComponent({ items = [] }) {
                     >
                       {item.name}
                     </h3>
-                    <ol className="list-none flex flex-col gap-4 h-full  my-4 flex-1 text-[17px] font-medium text-zinc-600 justify-evenly">
+                    <ol className="list-none flex flex-col gap-6 h-full  my-2 flex-1 text-[16px] font-medium text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
