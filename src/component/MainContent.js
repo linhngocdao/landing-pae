@@ -13,9 +13,6 @@ export default function MainContent({ children }) {
     overflow-auto
     transition-all
     duration-300
-    flex
-    items-center
-    justify-center
     ${isOpen && !isMobile ? 'ml-[280px]' : ''}
   `;
 

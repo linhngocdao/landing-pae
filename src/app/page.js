@@ -13,7 +13,7 @@ export default function Home() {
     <div className="mx-[10px] sm:mx-2 md:mx-6 lg:mx-10 min-h-screen font-inter">
       <div className="max-w-1xl mx-auto border-white border-2 shadow-2xl w-full rounded-xl  p-3 sm:p-5">
         <div className="flex gap-4 flex-col md:flex-row">
-          <div className="grid sm:grid-cols-1 2xl:grid-cols-2 gap-4 flex-1">
+          <div className="grid grid-cols-1 2xl:grid-cols-2 gap-4 flex-1">
             <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-4 py-2 border-2 gap-4">
               <div className="self-center">
                 <span className="text-2xl font-bold">
