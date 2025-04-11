@@ -12,76 +12,70 @@ export default function Home() {
   return (
     <div className="mx-[10px] sm:mx-2 md:mx-6 lg:mx-10 min-h-screen font-inter">
       <div className="max-w-1xl mx-auto border-white border-2 shadow-2xl w-full rounded-xl  p-3 sm:p-5">
-        <div className="flex gap-4 flex-col lg:flex-row">
-          {/* section1 */}
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 flex-1">
-            {/* card1 */}
-            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
+        <div className="flex gap-4 flex-col md:flex-row">
+          <div className="grid sm:grid-cols-1 2xl:grid-cols-2 gap-4 flex-1">
+            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-4 py-2 border-2 gap-4">
               <div className="self-center">
-                <div className="text-xl sm:text-2xl font-bold">
+                <span className="text-2xl font-bold">
                   <CountUp end={1300} duration={2.5} separator="," />+
-                </div>
-                <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
-              </div>
-              <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
-              <h2 className="text-lg sm:text-xl font-bold self-center">Tăng Follow</h2>
-            </div>
-            {/* card2 */}
-            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
-              <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold">
-                  <CountUp end={4500} duration={2.5} separator="," />+
                 </span>
-                <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
+                <p className="font-medium text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
-              <h2 className="text-lg sm:text-xl font-bold self-center">Dùng Seeding</h2>
-            </div>
-            {/* card3 */}
-            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
-              <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold">
-                  <CountUp end={650} duration={2.5} separator="," />+
-                </span>
-                <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
-              </div>
-              <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
-              <h2 className="text-lg sm:text-xl font-bold self-center break-words">Mua Fanpage, Group, TikTok</h2>
+              <h2 className="text-xl font-bold self-center">Tăng Follow</h2>
             </div>
 
-            {/* card 4 */}
-            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-2 sm:px-4 py-2 border-2 gap-2 sm:gap-4">
+            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-4 py-2 border-2 gap-4">
               <div className="self-center">
-                <span className="text-xl sm:text-2xl font-bold">
-                  <CountUp end={97} duration={2.5} separator="," />%
+                <span className="text-2xl font-bold">
+                  <CountUp end={4500} duration={2.5} separator="," />+
                 </span>
-                <p className="font-medium text-sm sm:text-lg">Khách hàng</p>
+                <p className="font-medium text-lg">Khách hàng</p>
               </div>
               <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
-              <h2 className="text-lg sm:text-xl font-bold self-center">Hài lòng dịch vụ của TAB</h2>
+              <h2 className="text-xl font-bold self-center">Dùng Seeding</h2>
+            </div>
+
+            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-4 py-2 border-2 gap-4">
+              <div className="self-center">
+                <span className="text-2xl font-bold">
+                  <CountUp end={650} duration={2.5} separator="," />+
+                </span>
+                <p className="font-medium text-lg">Khách hàng</p>
+              </div>
+              <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
+              <h2 className="text-xl font-bold self-center">Mua Fanpage, Group, TikTok</h2>
+            </div>
+
+            <div className="inline-flex border-white w-full shadow-2xl rounded-xl px-4 py-2 border-2 gap-4">
+              <div className="self-center">
+                <span className="text-2xl font-bold">
+                  <CountUp end={97} duration={2.5} separator="," />%
+                </span>
+                <p className="font-medium text-lg">Khách hàng</p>
+              </div>
+              <div className="bg-zinc-500 inline-block w-0.5 rounded"></div>
+              <h2 className="text-xl font-bold self-center">Hài lòng dịch vụ của TAB</h2>
             </div>
           </div>
-          {/* section2 */}
-          <div className="border-white shadow-2xl h-auto rounded-xl px-4 py-2 border-2 gap-4  lg:w-64 xl:w-80">
+          <div className="border-white shadow-2xl rounded-xl px-4 py-2 border-2 gap-4 h-max">
             <h1 className="text-xl font-bold">Fanpage hỗ trợ</h1>
-            <div className="h-[0.75px] w-full mx-auto bg-zinc-300 mt-5"></div>
-            <div className="flex gap-4 items-center pt-6">
-              <div className="relative w-12 h-12 sm:w-16 sm:h-16">
-                <Image
-                  src="https://demo-dashboard-taupe.vercel.app/logo2.png"
-                  alt="TAB Media"
-                  fill
-                  sizes="(max-width: 640px) 3rem, 4rem"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
+            <div className="h-[0.75px] w-full mx-auto bg-zinc-300 my-2"></div>
+            <div className="flex gap-4 items-center">
+              <Image
+                src="https://demo-dashboard-taupe.vercel.app/logo2.png"
+                width={64}
+                height={64}
+                alt="TAB Media"
+                className="w-16"
+              />
               <div className="flex-1">
-                <h3 className="font-bold text-[14px] sm:text-[16px] mb-2">TAB Media</h3>
+                <h3 className="font-bold text-[16px] mb-2">TAB Media</h3>
                 <a
                   href="https://www.facebook.com/messages/t/106313722503403"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="justify-center bg-blue-200 px-3 sm:px-4 py-1 font-medium text-xs sm:text-sm rounded-lg flex gap-2 items-center hover:bg-blue-300 active:bg-blue-400 transition-[background]"
+                  className="justify-center bg-blue-200 px-4 py-1 font-medium text-sm rounded-lg flex gap-2 items-center hover:bg-blue-300 active:bg-blue-400 transition-[background]"
                 >
                   <svg
                     stroke="currentColor"
@@ -94,7 +88,7 @@ export default function Home() {
                   >
                     <path d="M.001 11.639C.001 4.949 5.241 0 12.001 0S24 4.95 24 11.639c0 6.689-5.24 11.638-12 11.638-1.21 0-2.38-.16-3.47-.46a.96.96 0 00-.64.05l-2.39 1.05a.96.96 0 01-1.35-.85l-.07-2.14a.97.97 0 00-.32-.68A11.39 11.389 0 01.002 11.64zm8.32-2.19l-3.52 5.6c-.35.53.32 1.139.82.75l3.79-2.87c.26-.2.6-.2.87 0l2.8 2.1c.84.63 2.04.4 2.6-.48l3.52-5.6c.35-.53-.32-1.13-.82-.75l-3.79 2.87c-.25.2-.6.2-.86 0l-2.8-2.1a1.8 1.8 0 00-2.61.48z" />
                   </svg>
-                  <span>Nhắn tin</span>
+                  <p>Nhắn tin</p>
                 </a>
               </div>
             </div>
