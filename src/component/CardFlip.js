@@ -93,7 +93,7 @@ export default function FlipCardComponent({ items }) {
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[600px] sm:h-auto md:h-[48rem] transition-all duration-1000 ease-out snap-center
+              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
                         ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
                         ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
@@ -131,7 +131,7 @@ export default function FlipCardComponent({ items }) {
                     zIndex: 2
                   }}
                 >
-                  <div className={`h-full bg-zinc-100 w-full rounded-2xl shadow-lg`}></div>
+                  <div className={`h-full bg-zinc-100 w-full rounded-2xl shadow-2xl`}></div>
                 </div>
                 <div
                   className="react-card-back"
@@ -147,7 +147,7 @@ export default function FlipCardComponent({ items }) {
                     width: "100%"
                   }}
                 >
-                  <div className={`group flex flex-col p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-xl`}>
+                  <div className={`group flex flex-col p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-2xl`}>
                     <div className="w-33 h-33 mx-auto mb-4 p-1 relative">
                       <div
                         className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[8.5rem] h-[8.5rem] absolute`}
