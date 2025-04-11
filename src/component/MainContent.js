@@ -7,11 +7,16 @@ export default function MainContent({ children }) {
   const { isMobile } = useViewport();
 
   const mainClasses = `
-    flex-grow
+    flex-1
+    max-w-full
+    max-h-screen
+    overflow-auto
     transition-all
     duration-300
+    flex
+    items-center
+    justify-center
     ${isOpen && !isMobile ? 'ml-[280px]' : ''}
-    p-0 md:p-6
   `;
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function FlipCardComponent({ items = [] }) {
+export default function FlipCardComponent({ items }) {
   const [animationState, setAnimationState] = useState(0);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function FlipCardComponent({ items = [] }) {
   }, []);
 
   return (
-    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden">
+    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden h-full items-center justify-center">
       <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8 px-2">
         {displayItems.map((item, index) => {
           const gradientColors = getGradientColors();
@@ -93,7 +93,7 @@ export default function FlipCardComponent({ items = [] }) {
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[40rem] transition-all duration-1000 ease-out snap-center
+              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[600px] sm:h-auto md:h-[48rem] transition-all duration-1000 ease-out snap-center
                         ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
                         ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
@@ -147,61 +147,25 @@ export default function FlipCardComponent({ items = [] }) {
                     width: "100%"
                   }}
                 >
-                  <div className={`group flex flex-col p-3 sm:p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-lg bg-zinc-50`}>
+                  <div className={`group flex flex-col p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-xl`}>
                     <div className="w-33 h-33 mx-auto mb-4 p-1 relative">
                       <div
-                        className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[8.5rem] h-[8.5rem] absolute left-1/2 -translate-x-1/2 ${animationState >= 1 ? 'animate-wheel-spin' : ''}`}
+                        className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[8.5rem] h-[8.5rem] absolute`}
                       >
-                        <div className={`absolute w-5 h-5 rounded-full top-1 left-1 bg-gradient-to-tl ${gradientColors.from} ${gradientColors.to}`}></div>
-                        <div className={`absolute w-7 h-7 rounded-full bottom-1 right-1 bg-gradient-to-tl ${gradientColors.from} ${gradientColors.to}`}></div>
+                        <div className={`absolute w-5 h-5 rounded-full top-1 left-1 bg-gradient-to-tl from-orange-500 to-orange-400`}></div>
+                        <div className={`absolute w-7 h-7 rounded-full bottom-1 right-1 bg-gradient-to-tl from-orange-400 to-orange-300`}></div>
                       </div>
                       <div
-                        className={`flex bg-gradient-to-tl m-2 ${gradientColors.from} ${gradientColors.to} rounded-full items-center justify-center w-[7.5rem] h-[7.5rem] text-white mx-auto ${animationState >= 2 ? 'animate-pulse-subtle' : ''}`}
+                        className={`flex bg-gradient-to-tl m-2 from-orange-500 to-orange-300 rounded-full items-center justify-center w-[7.5rem] h-[7.5rem] text-white`}
                       >
-                        <p
-                          className="text-[1rem] font-bold transform transition-all duration-700"
-                          style={{
-                            opacity: animationState >= 1 ? 1 : 0,
-                            transform: animationState >= 1 ? 'scale(1)' : 'scale(0.7)',
-                            transitionDelay: `${index * 200 + 800}ms`
-                          }}
-                        >
-                          {item.price}
-                        </p>
-                        <sup
-                          className="text-[0.5rem] font-semibold ml-1 -top-2"
-                          style={{
-                            opacity: animationState >= 1 ? 1 : 0,
-                            transitionDelay: `${index * 200 + 900}ms`,
-                            transition: "opacity 0.5s ease-out"
-                          }}
-                        >
-                          VNĐ
-                        </sup>
+                        <p className="text-[1rem] font-bold">{item.price}</p>
+                        <sup className="text-[0.5rem] font-semibold ml-1 -top-2">VNĐ</sup>
                       </div>
                     </div>
-                    <h3
-                      className="text-xl font-bold text-center transform transition-all duration-700"
-                      style={{
-                        opacity: animationState >= 1 ? 1 : 0,
-                        transform: animationState >= 1 ? 'translateY(0)' : 'translateY(20px)',
-                        transitionDelay: `${index * 200 + 1000}ms`
-                      }}
-                    >
-                      {item.name}
-                    </h3>
-                    <ol className="list-none flex flex-col gap-4 sm:gap-6 h-full my-2 flex-1 text-[15px] sm:text-[16px] font-medium text-zinc-600 justify-evenly">
+                    <h3 className="text-xl font-bold text-center">{item.name}</h3>
+                    <ol className="list-none flex flex-col gap-4 h-full my-4 flex-1 text-[1rem] text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
-                        <li
-                          key={featureIndex}
-                          className="relative"
-                          style={{
-                            opacity: animationState >= 1 ? 1 : 0,
-                            transform: animationState >= 1 ? 'translateX(0)' : 'translateX(30px)',
-                            transition: "opacity 0.7s ease-out, transform 0.7s ease-out",
-                            transitionDelay: `${index * 100 + featureIndex * 150 + 1200}ms`
-                          }}
-                        >
+                        <li key={featureIndex} className="relative">
                           <svg
                             stroke="currentColor"
                             fill="currentColor"
@@ -221,7 +185,7 @@ export default function FlipCardComponent({ items = [] }) {
                       ))}
                     </ol>
                     <a
-                      className="btn transition-all duration-500 hover:text-orange-500 hover:bg-none hover:border-orange-500 border-2 bg-gradient-to-br from-orange-500 to-orange-300 rounded-xl px-4 py-2 text-white font-bold text-md transform"
+                      className="transition-all hover:text-orange-400 hover:bg-none border-orange-400 border-2 bg-gradient-to-tl from-orange-500 to-orange-300 rounded-xl px-4 py-2 text-white font-bold text-md"
                       href={item.contactLink || "https://www.messenger.com/t/106313722503403"}
                       target="_blank"
                       rel="noopener noreferrer"
