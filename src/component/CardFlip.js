@@ -93,7 +93,7 @@ export default function FlipCardComponent({ items }) {
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[100%] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
+              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[40rem] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
                         ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
                         ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
