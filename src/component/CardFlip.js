@@ -85,15 +85,15 @@ export default function FlipCardComponent({ items }) {
   }, []);
 
   return (
-    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-full max-w-7xl px-4 py-6 overflow-hidden h-full items-center justify-center">
-      <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-8 px-2">
+    <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 m-auto w-full max-w-7xl px-2 sm:px-4 py-4 sm:py-6 overflow-hidden">
+      <div className="flex flex-nowrap overflow-x-auto sm:contents w-full snap-x snap-mandatory hide-scrollbar touch-pan-x pb-4 sm:pb-8 px-1 sm:px-2">
         {displayItems.map((item, index) => {
           const gradientColors = getGradientColors();
 
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[40rem] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
+              className={`flex-shrink-0 w-[280px] xs:w-[300px] sm:w-full mx-2 first:ml-4 last:mr-4 sm:mx-auto h-[480px] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
                         ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
                         ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
@@ -105,11 +105,10 @@ export default function FlipCardComponent({ items }) {
               }}
             >
               <div
-                className="mx-auto"
+                className="mx-auto h-full"
                 style={{
-                  height: "100%",
                   position: "relative",
-                  width: "85%",
+                  width: "100%",
                   transform: animationState >= 1 ? `rotateY(${360}deg)` : "rotateY(0deg)",
                   transition: "transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
                   transitionDelay: `${index * 200 + 300}ms`,
@@ -147,45 +146,45 @@ export default function FlipCardComponent({ items }) {
                     width: "100%"
                   }}
                 >
-                  <div className={`group flex flex-col p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-2xl`}>
-                    <div className="w-33 h-33 mx-auto mb-4 p-1 relative">
+                  <div className={`group flex flex-col p-3 sm:p-4 text-center h-full w-full border-2 border-white rounded-2xl shadow-2xl`}>
+                    <div className="w-20 sm:w-33 h-20 sm:h-33 mx-auto mb-2 sm:mb-4 p-1 relative">
                       <div
-                        className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[8.5rem] h-[8.5rem] absolute`}
+                        className={`group-hover:rotate-90 transition-transform duration-500 rounded-full border-4 ${gradientColors.border} w-[5rem] sm:w-[8.5rem] h-[5rem] sm:h-[8.5rem] absolute`}
                       >
-                        <div className={`absolute w-5 h-5 rounded-full top-1 left-1 bg-gradient-to-tl from-orange-500 to-orange-400`}></div>
-                        <div className={`absolute w-7 h-7 rounded-full bottom-1 right-1 bg-gradient-to-tl from-orange-400 to-orange-300`}></div>
+                        <div className={`absolute w-3 sm:w-5 h-3 sm:h-5 rounded-full top-1 left-1 bg-gradient-to-tl from-orange-500 to-orange-400`}></div>
+                        <div className={`absolute w-4 sm:w-7 h-4 sm:h-7 rounded-full bottom-1 right-1 bg-gradient-to-tl from-orange-400 to-orange-300`}></div>
                       </div>
                       <div
-                        className={`flex bg-gradient-to-tl m-2 from-orange-500 to-orange-300 rounded-full items-center justify-center w-[7.5rem] h-[7.5rem] text-white`}
+                        className={`flex bg-gradient-to-tl m-2 from-orange-500 to-orange-300 rounded-full items-center justify-center w-[4rem] sm:w-[7.5rem] h-[4rem] sm:h-[7.5rem] text-white`}
                       >
-                        <p className="text-[1rem] font-bold">{item.price}</p>
-                        <sup className="text-[0.5rem] font-semibold ml-1 -top-2">VNĐ</sup>
+                        <p className="text-[0.75rem] sm:text-[1rem] font-bold">{item.price}</p>
+                        <sup className="text-[0.35rem] sm:text-[0.5rem] font-semibold ml-0.5 sm:ml-1 -top-1.5 sm:-top-2">VNĐ</sup>
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-center">{item.name}</h3>
-                    <ol className="list-none flex flex-col gap-4 h-full my-4 flex-1 text-[1rem] text-zinc-600 justify-evenly">
+                    <h3 className="text-base sm:text-xl font-bold text-center mb-2">{item.name}</h3>
+                    <ol className="list-none flex flex-col gap-1.5 sm:gap-4 flex-1 my-2 sm:my-4 text-[0.75rem] sm:text-[1rem] text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="relative">
+                        <li key={featureIndex} className="relative flex items-center min-h-[1.5rem] sm:min-h-[2rem]">
                           <svg
                             stroke="currentColor"
                             fill="currentColor"
                             strokeWidth="0"
                             viewBox="0 0 24 24"
                             className="text-orange-500 absolute left-0"
-                            height="24"
-                            width="24"
+                            height="16"
+                            width="16"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
                           </svg>
-                          <div className="ml-6">
+                          <div className="ml-4 sm:ml-6">
                             <p>{feature}</p>
                           </div>
                         </li>
                       ))}
                     </ol>
                     <a
-                      className="transition-all hover:text-orange-400 hover:bg-none border-orange-400 border-2 bg-gradient-to-tl from-orange-500 to-orange-300 rounded-xl px-4 py-2 text-white font-bold text-md"
+                      className="transition-all hover:text-orange-400 hover:bg-none border-orange-400 border-2 bg-gradient-to-tl from-orange-500 to-orange-300 rounded-xl px-2 sm:px-4 py-1.5 sm:py-2 text-white font-bold text-xs sm:text-md mt-2"
                       href={item.contactLink || "https://www.messenger.com/t/106313722503403"}
                       target="_blank"
                       rel="noopener noreferrer"
