@@ -163,7 +163,7 @@ export default function FlipCardComponent({ items }) {
                       </div>
                     </div>
                     <h3 className="text-xl font-bold text-center">{item.name}</h3>
-                    <ol className="list-none flex flex-col gap-4 h-full my-4 flex-1 text-[1rem] text-zinc-600 justify-evenly">
+                    <ol className="list-none flex flex-col gap-4 h-full my-2 md:my-4 flex-1 text-[1rem] text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="relative">
                           <svg
