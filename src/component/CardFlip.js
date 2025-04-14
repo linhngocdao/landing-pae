@@ -93,9 +93,9 @@ export default function FlipCardComponent({ items }) {
           return (
             <div
               key={index}
-              className={`flex-shrink-0 w-[85%] xs:w-[80%] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[40rem] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
-                        ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
-                        ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
+              className={`flex-shrink-0 w-[90vw] sm:w-full max-w-[320px] sm:max-w-full first:ml-0 last:mr-0 sm:mx-auto h-[89vh] sm:h-auto md:h-[45rem] transition-all duration-1000 ease-out snap-center
+                      ${animationState >= 1 ? 'opacity-100' : 'opacity-0'}
+                      ${animationState >= 1 ? 'scale-100' : 'scale-90'}`}
               style={{
                 perspective: "1000px",
                 zIndex: "auto",
@@ -109,7 +109,7 @@ export default function FlipCardComponent({ items }) {
                 style={{
                   height: "100%",
                   position: "relative",
-                  width: "85%",
+                  width: "90%",
                   transform: animationState >= 1 ? `rotateY(${360}deg)` : "rotateY(0deg)",
                   transition: "transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
                   transitionDelay: `${index * 200 + 300}ms`,
@@ -162,8 +162,8 @@ export default function FlipCardComponent({ items }) {
                         <sup className="text-[0.5rem] font-semibold ml-1 -top-2">VNĐ</sup>
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-center">{item.name}</h3>
-                    <ol className="list-none flex flex-col gap-4 h-full my-2 md:my-4 flex-1 text-[1rem] text-zinc-600 justify-evenly">
+                    <h3 className="text-lg sm:text-xl font-bold text-center">{item.name}</h3>
+                    <ol className="list-none flex flex-col gap-4 h-full my-2 md:my-4 flex-1 text-[0.9rem] sm:text-[1rem] text-zinc-600 justify-evenly">
                       {item.features && item.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="relative">
                           <svg
